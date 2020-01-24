@@ -14,8 +14,8 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
+    console.log("SUCCESS");
     const newUser = {
-      name,
       email,
       password
     };
@@ -36,7 +36,9 @@ const Signup = () => {
     <FormLayout>
       <div className="box columns is-centered">
         <div className="column">
-          <h1 className="is-size-3">Create new account</h1>
+          <h1 className="is-size-3 has-padding-bottom-10">
+            Create new account
+          </h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
