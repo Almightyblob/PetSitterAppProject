@@ -24,3 +24,5 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // install components:
 // npm i express mongoose bcryptjs config jsonwebtoken express-validator -s
+
+//comment for merging
