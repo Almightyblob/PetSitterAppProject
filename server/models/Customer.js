@@ -13,6 +13,14 @@ const CustomerSchema = new mongoose.Schema({
   },
   priceperday: {
     type: Number
-  }
+  },
+  pets: [
+    {
+      pettype: String,
+      petname: String,
+      petcomments: String,
+      petphoto: String
+    }
+  ]
 });
 module.exports = Customer = mongoose.model("customer", CustomerSchema);
