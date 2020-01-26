@@ -17,10 +17,12 @@ app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/customers", require("./routes/api/customers"));
 app.use("/api/pets", require("./routes/api/pets"));
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 //npm run server
 
 // install components:
 // npm i express mongoose bcryptjs config jsonwebtoken express-validator -s
+
+//comment for merging
