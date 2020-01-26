@@ -7,7 +7,8 @@ const AddCustomer = () => {
     name: "",
     address: "",
     phone: "",
-    priceperday: ""
+    priceperday: "",
+    id: ""
   });
 
   const { name, address, phone, priceperday } = formData;
@@ -15,11 +16,12 @@ const AddCustomer = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
-    const newCustomer = {
+    const customer = {
       name,
       address,
       phone,
-      priceperday
+      priceperday,
+      id
     };
     try {
       const config = {
@@ -27,7 +29,7 @@ const AddCustomer = () => {
           "Content-Type": "application/json"
         }
       };
-      const body = JSON.stringify(newCustomer);
+      const body = JSON.stringify(customer);
       const res = await axios.post("/api/customers", body, config);
       console.log(res.data);
     } catch (err) {
