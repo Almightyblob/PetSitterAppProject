@@ -4,11 +4,11 @@ const bcrypt = require("bcryptjs");
 const auth = require("../../middleware/auth");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult } = require("express-validator/check");
 
 const User = require("../../models/User");
-//@route        GET api/auth
-//@description  Test route
+//@route        POST api/auth
+//@description  Authenticate user & get token
 //@access       PUBLIC
 
 router.get("/", auth, async (req, res) => {
@@ -20,9 +20,6 @@ router.get("/", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-//@route        POST api/auth
-//@description  Authenticate user & get token
-//@access       PUBLIC
 
 router.post(
   "/",

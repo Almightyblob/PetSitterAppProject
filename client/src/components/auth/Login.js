@@ -25,7 +25,7 @@ const Login = () => {
         }
       };
       const body = JSON.stringify(newUser);
-      const res = await axios.post("/api/users", body, config);
+      const res = await axios.post("/api/auth", body, config);
       console.log(res.data);
     } catch (err) {
       console.log(err.response.data);
