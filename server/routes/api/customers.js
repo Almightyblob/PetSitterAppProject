@@ -41,10 +41,6 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-//@route        POST api/customers
-//@description  create customer
-//@access       PRIVATE
-
 router.put("/", auth, async (req, res) => {
   const { pettype, petname, petcomments, petphoto, id } = req.body;
   const newPet = {
