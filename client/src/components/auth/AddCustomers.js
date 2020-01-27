@@ -7,8 +7,8 @@ const AddCustomer = () => {
     name: "",
     address: "",
     phone: "",
-    priceperday: "",
-    id: ""
+    priceperday: ""
+    // id: ""
   });
 
   const { name, address, phone, priceperday } = formData;
@@ -20,8 +20,8 @@ const AddCustomer = () => {
       name,
       address,
       phone,
-      priceperday,
-      id
+      priceperday
+      // id
     };
     try {
       const config = {

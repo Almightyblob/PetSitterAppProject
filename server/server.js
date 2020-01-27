@@ -21,7 +21,9 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 //npm run server
 
-// install components:
-// npm i express mongoose bcryptjs config jsonwebtoken express-validator -s
+// install components for server:
+// npm i express mongoose bcryptjs config jsonwebtoken express-validator request --s
+//npm i -D nodemon concurrently
 
-//comment for merging
+// install components for client:
+//npm i axios react-router-dom redux react-redux reduct-thunk redux-devtools-extension moment react-moment bulma bulma-helpers--s
