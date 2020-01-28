@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import FormLayout from "../../layout/Form";
+import FormLayout from "../layout/Form";
 import axios from "axios";
+import { Link, Redirect } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -31,6 +32,10 @@ const Login = () => {
       console.log(err.response.data);
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <FormLayout>
       <div className="box columns is-centered">
@@ -46,7 +51,6 @@ const Login = () => {
                   name="email"
                   value={email}
                   onChange={e => onChange(e)}
-                  required
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-envelope"></i>
@@ -64,6 +68,7 @@ const Login = () => {
                   placeholder="Password"
                   name="password"
                   value={password}
+                  minLength="8"
                   onChange={e => onChange(e)}
                 />
                 <span className="icon is-small is-left">
@@ -76,6 +81,9 @@ const Login = () => {
                 <input type="submit" className="button is-link" value="Login" />
               </p>
             </div>
+            <p>
+              Don't have an account? <Link to="/signup">Sign Up</Link>
+            </p>
           </form>
         </div>
       </div>
