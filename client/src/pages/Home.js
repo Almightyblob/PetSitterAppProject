@@ -1,5 +1,5 @@
 import React from "react";
-import FormLayout from "../layout/Form";
+import FormLayout from "../components/layout/Form";
 
 const Home = () => {
   return (
