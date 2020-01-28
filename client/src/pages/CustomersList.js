@@ -22,7 +22,7 @@ function CustomersList() {
       <h1>List of all customers:</h1>
       {items.map(item => (
         <p key={item._id}>
-          <Link to={`/customer/${item._id}`}>
+          <Link to={`/auth/customers/${item._id}`}>
             <span className="has-margin-50">Name: {item.name}</span>
             <span className="has-margin-50">Address: {item.address}</span>
             <span className="has-margin-50">Phone: {item.phone}</span>
@@ -41,6 +41,7 @@ export default CustomersList;
 //DOM: Please delete comments after you check it and everything what we don't need connected to CustomersList
 //DOM: I added links to /customer/id - I am leaving styling and creating a single page for customer.
 // I was follwoing wthis guy, he is creating a single page as well: https://www.youtube.com/watch?v=Law7wfdg_ls
+//I changed naming of files to CustomersList and AddCustomer / Earlier was: CustomerList and AddCustomers
 
 //-------------------------Your code below-----------------
 // const CustomersList = () => {
