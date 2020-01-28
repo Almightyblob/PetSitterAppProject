@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormLayout from "../../layout/Form";
+import FormLayout from "../layout/Form";
 import axios from "axios";
 
 const AddCustomer = () => {
@@ -7,8 +7,8 @@ const AddCustomer = () => {
     name: "",
     address: "",
     phone: "",
-    priceperday: "",
-    id: ""
+    priceperday: ""
+    // id: ""
   });
 
   const { name, address, phone, priceperday } = formData;
@@ -20,8 +20,8 @@ const AddCustomer = () => {
       name,
       address,
       phone,
-      priceperday,
-      id
+      priceperday
+      // id
     };
     try {
       const config = {

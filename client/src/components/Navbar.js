@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import {userExist} from "../utils/auth";
 import "./Burger.js";
 const Navbar = () => {
-  // let user = userExist()
   return (
-    <div className="has-margin-bottom-100">
+    <div className="has-margin-bottom-50">
       <nav
         className="navbar is-fixed-top is-light has-padding-5"
         role="navigation"
