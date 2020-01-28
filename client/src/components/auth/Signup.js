@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import FormLayout from "../layout/Form";
-// import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 import Alert from "../layout/Alert";
 
-const Signup = ({ setAlert, register }) => {
+const Signup = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,6 +27,9 @@ const Signup = ({ setAlert, register }) => {
       register({ name, email, password });
     }
   };
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <FormLayout>
       <div className="box columns is-centered">
@@ -84,7 +86,7 @@ const Signup = ({ setAlert, register }) => {
                   name="password"
                   value={password}
                   onChange={onChange}
-                  minLength="8"
+                  // minLength="8"
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock"></i>
@@ -100,7 +102,7 @@ const Signup = ({ setAlert, register }) => {
                   name="password2"
                   value={password2}
                   onChange={e => onChange(e)}
-                  minLength="8"
+                  // minLength="8"
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock"></i>
@@ -127,6 +129,11 @@ const Signup = ({ setAlert, register }) => {
 };
 Signup.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
-export default connect(null, { setAlert, register })(Signup);
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps, { setAlert, register })(Signup);
