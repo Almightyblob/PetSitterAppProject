@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormLayout from "../layout/Form";
+import FormLayout from "../components/layout/Form";
 import axios from "axios";
 
 const AddPet = () => {

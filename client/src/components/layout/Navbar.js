@@ -11,7 +11,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <Link to="/auth/customer" className="button">
+            <Link to="/auth/customers" className="button">
               <strong>Customers</strong>
             </Link>
           </div>
