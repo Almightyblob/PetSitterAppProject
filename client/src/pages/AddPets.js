@@ -4,21 +4,20 @@ import axios from "axios";
 
 const AddPet = () => {
   const [formData, setFormData] = useState({
-    type: "",
-    name: "",
-    comments: "",
-    priceperday: ""
+    pettype: "",
+    petname: "",
+    petcomments: ""
   });
 
-  const { type, name, comments } = formData;
+  const { pettype, petname, petcomments } = formData;
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
     const newPet = {
-      type,
-      name,
-      comments
+      pettype,
+      petname,
+      petcomments
     };
     try {
       const config = {
@@ -45,8 +44,8 @@ const AddPet = () => {
                   className="input"
                   type="text"
                   placeholder="Type of Pet"
-                  name="type"
-                  value={type}
+                  name="pettype"
+                  value={pettype}
                   onChange={e => onChange(e)}
                   required
                 />
@@ -61,8 +60,8 @@ const AddPet = () => {
                   className="input"
                   type="text"
                   placeholder="Name"
-                  name="name"
-                  value={name}
+                  name="petname"
+                  value={petname}
                   onChange={e => onChange(e)}
                   required
                 />
@@ -77,8 +76,8 @@ const AddPet = () => {
                   className="input"
                   type="textarea"
                   placeholder="Comments"
-                  name="comments"
-                  value={comments}
+                  name="petcomments"
+                  value={petcomments}
                   onChange={e => onChange(e)}
                 />
                 <span className="icon is-small is-left">
