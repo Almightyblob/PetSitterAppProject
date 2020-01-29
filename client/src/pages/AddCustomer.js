@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import FormLayout from "../components/layout/Form";
 import axios from "axios";
+import { connect } from "react-redux";
+import FormLayout from "../components/layout/Form";
+import Alert from "../components/layout/Alert";
+import { setAlert } from "../actions/alert";
 
-const AddCustomer = props => {
+const AddCustomer = ({ props, setAlert }) => {
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -10,10 +13,29 @@ const AddCustomer = props => {
     phone: "",
     priceperday: ""
   });
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
 
   const { name, address, phone, priceperday } = formData;
-  const onChange = e =>
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const checkPhoneNumberAvailability = async () => {
+    try {
+      await axios.post(
+        "/api/customers/validation/phone-number",
+        { phone },
+        config
+      );
+      setAlert("Well done! This customer is new!", "primary");
+    } catch (e) {
+      setAlert(e.response.data, "danger");
+    }
+  };
+
   const onSubmit = async e => {
     e.preventDefault();
     const customer = {
@@ -22,26 +44,25 @@ const AddCustomer = props => {
       phone,
       priceperday
     };
+
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
       const body = JSON.stringify(customer);
       const res = await axios.post("/api/customers", body, config);
       if (res) {
         props.history.push("/auth/addpet");
       }
     } catch (err) {
-      console.log(err.response.data);
+      setAlert("Could not add user", "danger");
+      // console.log(err.response.data);
     }
   };
-
   return (
     <FormLayout>
       <div className="box columns is-centered">
         <div className="column">
+          <div className="has-padding-bottom-20">
+            <Alert />
+          </div>
           <h1 className="is-size-3">Add a Customer</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
@@ -85,6 +106,7 @@ const AddCustomer = props => {
                   name="phone"
                   value={phone}
                   onChange={e => onChange(e)}
+                  onBlur={checkPhoneNumberAvailability}
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-mobile-alt"></i>
@@ -122,4 +144,4 @@ const AddCustomer = props => {
   );
 };
 
-export default AddCustomer;
+export default connect(null, { setAlert: setAlert })(AddCustomer);
