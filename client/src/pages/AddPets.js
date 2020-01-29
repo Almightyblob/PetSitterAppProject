@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
+import Alert from "../components/layout/Alert";
+import AddCustomer from "./AddCustomer";
 
-const AddPet = () => {
+const AddPet = props => {
   const [formData, setFormData] = useState({
     type: "",
     name: "",
@@ -29,6 +31,9 @@ const AddPet = () => {
       const body = JSON.stringify(newPet);
       const res = await axios.post("/api/pets", body, config);
       console.log(res.data);
+      if (res) {
+        props.history.push(`/auth/customer${AddCustomer._id}`);
+      }
     } catch (err) {
       console.log(err.response.data);
     }
@@ -37,6 +42,9 @@ const AddPet = () => {
     <FormLayout>
       <div className="box columns is-centered">
         <div className="column">
+          <div className="has-padding-bottom-20">
+            <Alert />
+          </div>
           <h1 className="is-size-3">Add a Pet</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
@@ -91,7 +99,7 @@ const AddPet = () => {
                 <input
                   type="submit"
                   className="button is-link"
-                  value="Add Customer"
+                  value="Add Pet"
                 />
               </p>
             </div>

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
 
-const AddCustomer = () => {
+const AddCustomer = props => {
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     address: "",
     phone: "",
     priceperday: ""
-    // id: ""
   });
 
   const { name, address, phone, priceperday } = formData;
@@ -21,7 +21,6 @@ const AddCustomer = () => {
       address,
       phone,
       priceperday
-      // id
     };
     try {
       const config = {
@@ -31,11 +30,14 @@ const AddCustomer = () => {
       };
       const body = JSON.stringify(customer);
       const res = await axios.post("/api/customers", body, config);
-      console.log(res.data);
+      if (res) {
+        props.history.push("/auth/addpet");
+      }
     } catch (err) {
       console.log(err.response.data);
     }
   };
+
   return (
     <FormLayout>
       <div className="box columns is-centered">

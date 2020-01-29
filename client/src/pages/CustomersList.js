@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 // import CustomerCard from "../components/layout/CustomerCard";
 
@@ -11,7 +10,6 @@ function CustomersList() {
   const [items, setItems] = useState([]);
   const fetchItems = async () => {
     const list = await axios.get("/api/customers");
-    // const items = await list.json();
 
     const items = list.data;
     setItems(items);
