@@ -5,7 +5,6 @@ const Customer = require("../../models/Customer");
 
 const { validationResult } = require("express-validator");
 
-
 //@route        GET api/customers
 //@description  retrieve customer list
 //@access       PUBLIC
@@ -106,14 +105,12 @@ router.put("/", async (req, res) => {
   }
 });
 
-
 router.post("/validation/phone-number", (req, res) => {
   Customer.findOne({ phone: req.body.phone }).then(customer => {
     if (customer)
       res.status(400).send("A customer with this phone number already exists.");
     else res.status(200).send("Available");
   });
-
 });
 
 module.exports = router;
