@@ -1,7 +1,11 @@
 
 import React, { useState, useEffect, Fragment } from "react";
+<<<<<<< HEAD
+import CustomerCard from "../components/CustomerCard";
+=======
 import CustomerCard from "../components/layout/CustomerCard";
 
+>>>>>>> 1ab5eac2aa738f9386e6ea2c5fc10f23ad5352db
 import axios from "axios";
 
 function CustomersList() {

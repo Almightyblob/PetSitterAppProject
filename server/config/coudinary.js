@@ -11,7 +11,7 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "profile_pic", // The name of the folder in cloudinary
+  folder: "petphoto", // The name of the folder in cloudinary
   allowedFormats: ["jpg", "png"],
   filename: function(req, file, cb) {
     cb(null, file.filename);
