@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    let customer = await Customer.findById(req.params.id);
+    let customer = await Customer.findById(req.params.id).populate("pets");
     res.json(customer);
   } catch (err) {
     console.log(err.message);
@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
       priceperday
     });
     await customer.save();
-    res.status(200).send("Customer created");
+    res.json(customer);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
