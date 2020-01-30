@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 // const auth = require("../../middleware/auth");
 const Customer = require("../../models/Customer");
+
 const { validationResult } = require("express-validator");
+
 
 //@route        GET api/customers
 //@description  retrieve customer list
@@ -12,6 +14,20 @@ router.get("/", async (req, res) => {
   try {
     let customers = await Customer.find({});
     res.json(customers);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//@route        GET api/customers/:id
+//@description  retrieve customer list
+//@access       PUBLIC
+
+router.get("/:id", async (req, res) => {
+  try {
+    let customer = await Customer.findById(req.params.id);
+    res.json(customer);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
@@ -90,12 +106,14 @@ router.put("/", async (req, res) => {
   }
 });
 
+
 router.post("/validation/phone-number", (req, res) => {
   Customer.findOne({ phone: req.body.phone }).then(customer => {
     if (customer)
       res.status(400).send("A customer with this phone number already exists.");
     else res.status(200).send("Available");
   });
+
 });
 
 module.exports = router;
