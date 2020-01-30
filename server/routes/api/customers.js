@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/auth");
+// const auth = require("../../middleware/auth");
 const Customer = require("../../models/Customer");
-const uploadCloud = require("../../config/coudinary");
+
+const { validationResult } = require("express-validator");
 
 //@route        GET api/customers
 //@description  retrieve customer list
@@ -37,24 +38,18 @@ router.get("/:id", async (req, res) => {
 //@access       PUBLIC
 
 router.post("/", async (req, res) => {
-  const { name, address, phone, priceperday, id } = req.body;
+  const errors = validationResult(req.body.phone);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { name, address, phone, priceperday } = req.body;
   try {
     //Check if customer exist
-    let customer = await Customer.findById(id);
+    let customer = await Customer.findOne({ phone });
     if (customer) {
-      //update customer
-      customer = await Customer.findByIdAndUpdate(
-        id,
-        {
-          name,
-          address,
-          phone,
-          priceperday
-        },
-        { new: true }
-      );
-      console.log(customer);
-      return res.json(customer);
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Customer already exists" }] });
     }
     customer = new Customer({
       name,
@@ -70,7 +65,23 @@ router.post("/", async (req, res) => {
   }
 });
 
-//@route        PUT api/customers
+router.post("/edit", async (req, res) => {
+  //update customer
+  customer = await Customer.findByIdAndUpdate(
+    id,
+    {
+      name,
+      address,
+      phone,
+      priceperday
+    },
+    { new: true }
+  );
+  console.log(customer);
+  return res.json(customer);
+});
+
+//@route        POST api/customers
 //@description  add pets
 //@access       PUBLIC
 
@@ -94,21 +105,12 @@ router.put("/", async (req, res) => {
   }
 });
 
-// //@route        post api/customers
-// //@description  add pet photo
-// //@access       PUBLIC
-
-// router.post("/petphoto", uploadCloud.single("petphoto"), async (req, res) => {
-//   const { secure_url } = req.file;
-//   const photoURL = {
-//     petphoto: secure_url
-//   };
-//   try {
-//     res.json(photoURL);
-//   } catch (err) {
-//     console.log(err.message);
-//     res.status(500).send("Server error");
-//   }
-// });
+router.post("/validation/phone-number", (req, res) => {
+  Customer.findOne({ phone: req.body.phone }).then(customer => {
+    if (customer)
+      res.status(400).send("A customer with this phone number already exists.");
+    else res.status(200).send("Available");
+  });
+});
 
 module.exports = router;

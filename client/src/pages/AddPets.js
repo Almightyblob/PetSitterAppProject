@@ -31,7 +31,7 @@ const AddPet = props => {
       const res = await axios.put("/api/customers", body, config);
       console.log(res.data);
       if (res) {
-        props.history.push(`/auth/customer/${AddCustomer._id}`);
+        props.history.push(`/auth/customer${AddCustomer._id}`);
       }
     } catch (err) {
       console.log(err.response.data);
