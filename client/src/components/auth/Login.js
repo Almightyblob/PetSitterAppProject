@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import FormLayout from "../layout/Form";
-import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
+import Alert from "../layout/Alert";
 
-const Login = ({ isAuthenticated }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -14,25 +17,9 @@ const Login = ({ isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    console.log("SUCCESS");
-    const newUser = {
-      email,
-      password
-    };
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
-      const body = JSON.stringify(newUser);
-      const res = await axios.post("/api/auth", body, config);
-      console.log(res.data);
-    } catch (err) {
-      console.log(err.response.data);
-    }
+    login(email, password);
   };
-
+  //Redirect if logged in
   if (isAuthenticated) {
     return <Redirect to="/" />;
   }
@@ -40,6 +27,9 @@ const Login = ({ isAuthenticated }) => {
     <FormLayout>
       <div className="box columns is-centered">
         <div className="column">
+          <div className="has-padding-bottom-20">
+            <Alert />
+          </div>
           <h1 className="is-size-3 has-padding-bottom-10">Log in</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
@@ -90,5 +80,11 @@ const Login = ({ isAuthenticated }) => {
     </FormLayout>
   );
 };
-
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps, { login })(Login);
