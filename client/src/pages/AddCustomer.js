@@ -1,44 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
 import FormLayout from "../components/layout/Form";
-import Alert from "../components/layout/Alert";
-import { setAlert } from "../actions/alert";
-import { Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
+import axios from "axios";
 
-const AddCustomer = ({ props, setAlert, isInDatabase }) => {
-  const [submitted, setSubmitted] = useState(false);
+const AddCustomer = props => {
   const [formData, setFormData] = useState({
-    id: "",
     name: "",
     address: "",
     phone: "",
     priceperday: ""
+    // id: ""
   });
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
 
   const { name, address, phone, priceperday } = formData;
-  const onChange = e => {
+  const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const checkPhoneNumberAvailability = async () => {
-    try {
-      await axios.post(
-        "/api/customers/validation/phone-number",
-        { phone },
-        config
-      );
-      setAlert("Well done! This customer is new!", "primary");
-    } catch (e) {
-      setAlert(e.response.data, "danger");
-    }
-  };
-
   const onSubmit = async e => {
     e.preventDefault();
     const customer = {
@@ -46,42 +21,26 @@ const AddCustomer = ({ props, setAlert, isInDatabase }) => {
       address,
       phone,
       priceperday
+      // id
     };
-
     try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
       const body = JSON.stringify(customer);
-      axios
-        .post("/api/customers", body, config)
-        .then(resp => {
-          debugger;
-          setSubmitted(true);
-          console.log("Response>>>>>>>>", resp);
-          console.log("STATE>>>>>>>>", submitted);
-        })
-        .catch(err => {
-          console.log("ERROR>>>>", err);
-        });
-      // if (body) {
-
-      // props.history.push("/auth/addpet");
-      // }
+      const res = await axios.post("/api/customers", body, config);
+      console.log(res.data);
+      props.history.push("/auth/addpet");
     } catch (err) {
-      // console.log(err.response.data);
-      setAlert("Couldn't add a customer", "danger", err); //Change an allert1
-    }
-
-    if (!submitted) {
-      return <Redirect to="/auth/addpet" />;
+      console.log(err.response.data);
     }
   };
-
   return (
     <FormLayout>
       <div className="box columns is-centered">
         <div className="column">
-          <div className="has-padding-bottom-20">
-            <Alert />
-          </div>
           <h1 className="is-size-3">Add a Customer</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
@@ -125,7 +84,6 @@ const AddCustomer = ({ props, setAlert, isInDatabase }) => {
                   name="phone"
                   value={phone}
                   onChange={e => onChange(e)}
-                  onBlur={checkPhoneNumberAvailability}
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-mobile-alt"></i>
@@ -162,11 +120,5 @@ const AddCustomer = ({ props, setAlert, isInDatabase }) => {
     </FormLayout>
   );
 };
-AddCustomer.propTypes = {
-  isInDatabase: PropTypes.bool
-};
-const mapStateToProps = state => ({
-  isInDatabase: state.auth.isInDatabase
-});
 
-export default connect(mapStateToProps, { setAlert: setAlert })(AddCustomer);
+export default AddCustomer;

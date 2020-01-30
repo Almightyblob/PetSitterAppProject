@@ -40,7 +40,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const errors = validationResult(req.body.phone);
   if (!errors.isEmpty()) {
-    return res.status(401).json({ errors: errors.array() });
+    return res.status(400).json({ errors: errors.array() });
   }
   const { name, address, phone, priceperday } = req.body;
   try {
