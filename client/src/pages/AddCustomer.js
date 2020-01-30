@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import FormLayout from "../components/layout/Form";
 import Alert from "../components/layout/Alert";
 import { setAlert } from "../actions/alert";
+import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const AddCustomer = ({ props, setAlert }) => {
+const AddCustomer = ({ props, setAlert, isInDatabase }) => {
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -48,14 +50,18 @@ const AddCustomer = ({ props, setAlert }) => {
     try {
       const body = JSON.stringify(customer);
       const res = await axios.post("/api/customers", body, config);
-      if (res) {
-        props.history.push("/auth/addpet");
-      }
+      // if (body) {
+      console.log(res);
+      props.history.push("/auth/addpet");
+      // }
     } catch (err) {
-      setAlert("Could not add user", "danger");
       // console.log(err.response.data);
+      setAlert("Customer added to a databse", "danger"); //Change an allert1
     }
   };
+  if (isInDatabase) {
+    return <Redirect to="/auth/addpet" />;
+  }
   return (
     <FormLayout>
       <div className="box columns is-centered">
@@ -143,5 +149,11 @@ const AddCustomer = ({ props, setAlert }) => {
     </FormLayout>
   );
 };
+AddCustomer.propTypes = {
+  isInDatabase: PropTypes.bool
+};
+const mapStateToProps = state => ({
+  isInDatabase: state.auth.isInDatabase
+});
 
-export default connect(null, { setAlert: setAlert })(AddCustomer);
+export default connect(mapStateToProps, { setAlert: setAlert })(AddCustomer);
