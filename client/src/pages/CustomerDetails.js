@@ -9,10 +9,9 @@ function CustomerDetails(props) {
   const [items, setItems] = useState(null);
   const fetchItems = async () => {
     const customer = await axios.get(`/api/customers/${props.match.params.id}`);
-    //create new route for single customer details
     const items = customer.data;
     setItems(items);
-    console.log(items);
+    console.log(items.pets);
   };
 
   return items ? (
@@ -52,8 +51,8 @@ function CustomerDetails(props) {
               key={pet._id}
               className="column box is-8 is-offset-2 has-margin-bottom-20"
             >
-              <p className="is-size-5">{pet.petname}</p>
-              <p>{pet.pettype}</p>
+              <p className="is-size-5">{pet.name}</p>
+              <p>{pet.type}</p>
               <img src={pet.photo} alt="" />
             </div>
           </div>
