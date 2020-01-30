@@ -1,5 +1,10 @@
 import React, { Fragment, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "../src/components/auth/Signup";
 import Login from "../src/components/auth/Login";
@@ -13,6 +18,7 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
+import PageNotFound from "./pages/PageNotFound";
 import myCalendar from "./components/myCalendar";
 import "./App.scss";
 
@@ -28,11 +34,13 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path="/" component={Home} />
           <Switch>
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
+            <Route path="/404" component={PageNotFound} />
           </Switch>
+          <Redirect to="/404" />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/auth/addcustomer" component={AddCustomer} />
           <Route exact path="/auth/addpet" component={AddPets} />
           <Route exact path="/auth/customers" component={CustomersList} />
