@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
 import CustomerCard from "../components/CustomerCard";
-
 import axios from "axios";
 
 function CustomersList() {
@@ -13,7 +12,6 @@ function CustomersList() {
 
     const items = list.data;
     setItems(items);
-    console.log(items);
   };
   return (
     <Fragment>

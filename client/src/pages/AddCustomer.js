@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
-
 const AddCustomer = props => {
   const [formData, setFormData] = useState({
     name: "",
@@ -31,8 +30,8 @@ const AddCustomer = props => {
       };
       const body = JSON.stringify(customer);
       const res = await axios.post("/api/customers", body, config);
-      console.log(res.data);
-      props.history.push("/auth/addpet");
+      console.log(res.data._id);
+      props.history.push("/auth/addpet", { id: res.data._id });
     } catch (err) {
       console.log(err.response.data);
     }

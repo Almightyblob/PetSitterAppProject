@@ -6,20 +6,24 @@ import AddCustomer from "./AddCustomer";
 
 const AddPet = props => {
   const [formData, setFormData] = useState({
-    pettype: "",
-    petname: "",
-    petcomments: ""
+    customerid: props.location.state.id,
+    type: "",
+    name: "",
+    comments: ""
   });
 
-  const { pettype, petname, petcomments } = formData;
-  const onChange = e =>
+  const { type, name, comments, customerid } = formData;
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData.customerid);
+  };
   const onSubmit = async e => {
     e.preventDefault();
     const newPet = {
-      pettype,
-      petname,
-      petcomments
+      customerid,
+      type,
+      name,
+      comments
     };
     try {
       const config = {
@@ -28,7 +32,7 @@ const AddPet = props => {
         }
       };
       const body = JSON.stringify(newPet);
-      const res = await axios.put("/api/customers", body, config);
+      const res = await axios.post("/api/pets", body, config);
       console.log(res.data);
       props.history.push(`/auth/customer/${AddCustomer._id}`);
     } catch (err) {
@@ -50,8 +54,8 @@ const AddPet = props => {
                   className="input"
                   type="text"
                   placeholder="Type of Pet"
-                  name="pettype"
-                  value={pettype}
+                  name="type"
+                  value={type}
                   onChange={e => onChange(e)}
                   required
                 />
@@ -66,8 +70,8 @@ const AddPet = props => {
                   className="input"
                   type="text"
                   placeholder="Name"
-                  name="petname"
-                  value={petname}
+                  name="name"
+                  value={name}
                   onChange={e => onChange(e)}
                   required
                 />
@@ -82,8 +86,8 @@ const AddPet = props => {
                   className="input"
                   type="textarea"
                   placeholder="Comments"
-                  name="petcomments"
-                  value={petcomments}
+                  name="comments"
+                  value={comments}
                   onChange={e => onChange(e)}
                 />
                 <span className="icon is-small is-left">
