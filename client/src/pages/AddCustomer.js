@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AddCustomer = ({ props, setAlert, isInDatabase }) => {
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -49,19 +50,31 @@ const AddCustomer = ({ props, setAlert, isInDatabase }) => {
 
     try {
       const body = JSON.stringify(customer);
-      const res = await axios.post("/api/customers", body, config);
+      axios
+        .post("/api/customers", body, config)
+        .then(resp => {
+          debugger;
+          setSubmitted(true);
+          console.log("Response>>>>>>>>", resp);
+          console.log("STATE>>>>>>>>", submitted);
+        })
+        .catch(err => {
+          console.log("ERROR>>>>", err);
+        });
       // if (body) {
-      console.log(res);
-      props.history.push("/auth/addpet");
+
+      // props.history.push("/auth/addpet");
       // }
     } catch (err) {
       // console.log(err.response.data);
-      setAlert("Customer added to a databse", "danger"); //Change an allert1
+      setAlert("Couldn't add a customer", "danger", err); //Change an allert1
+    }
+
+    if (!submitted) {
+      return <Redirect to="/auth/addpet" />;
     }
   };
-  if (isInDatabase) {
-    return <Redirect to="/auth/addpet" />;
-  }
+
   return (
     <FormLayout>
       <div className="box columns is-centered">
