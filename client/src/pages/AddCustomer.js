@@ -9,6 +9,7 @@ const AddCustomer = props => {
     priceperday: ""
     // id: ""
   });
+
   const { name, address, phone, priceperday } = formData;
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -118,4 +119,5 @@ const AddCustomer = props => {
     </FormLayout>
   );
 };
+
 export default AddCustomer;

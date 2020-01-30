@@ -34,9 +34,7 @@ const AddPet = props => {
       const body = JSON.stringify(newPet);
       const res = await axios.post("/api/pets", body, config);
       console.log(res.data);
-      if (res) {
-        props.history.push(`/auth/customer${AddCustomer._id}`);
-      }
+      props.history.push(`/auth/customer/${AddCustomer._id}`);
     } catch (err) {
       console.log(err.response.data);
     }
