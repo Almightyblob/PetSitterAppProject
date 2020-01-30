@@ -19,7 +19,7 @@ import setAuthToken from "./utils/setAuthToken";
 import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
 import PageNotFound from "./pages/PageNotFound";
-import myCalendar from "./components/myCalendar";
+import MyCalendar from "./components/myCalendar";
 import "./App.scss";
 
 if (localStorage.token) {
@@ -38,14 +38,14 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path="/404" component={PageNotFound} />
           </Switch>
-          <Redirect to="/404" />
+          <Route path="/404" component={PageNotFound} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/auth/addcustomer" component={AddCustomer} />
           <Route exact path="/auth/addpet" component={AddPets} />
           <Route exact path="/auth/customers" component={CustomersList} />
           <Route exact path="/auth/customers/:id" component={CustomerDetails} />
-          <Route exact path="/calendar" component={myCalendar} />
+          <Route exact path="/calendar" component={MyCalendar} />
         </Fragment>
       </Router>
     </Provider>

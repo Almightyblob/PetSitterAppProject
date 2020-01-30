@@ -4,6 +4,20 @@ const Customer = require("../../models/Customer");
 const Job = require("../../models/Job");
 const mongoose = require("mongoose");
 
+//@route        GET api/jobs
+//@description  retrieve all jobs
+//@access       PUBLIC
+
+router.get("/", async (req, res) => {
+  try {
+    let jobs = await Job.find({});
+    res.json(jobs);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 //@route        POST api/jobs
 //@description  create job
 //@access       PUBLIC
