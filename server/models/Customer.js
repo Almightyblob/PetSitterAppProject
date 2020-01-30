@@ -16,14 +16,7 @@ const CustomerSchema = new mongoose.Schema({
   priceperday: {
     type: Number
   },
-  pets: [
-    {
-      pettype: String,
-      petname: String,
-      petcomments: String,
-      petphoto: String
-    }
-  ],
+  pets: [{ type: ObjectId, ref: "pets" }],
   jobs: [{ type: ObjectId, ref: "jobs" }]
 });
 module.exports = Customer = mongoose.model("customer", CustomerSchema);
