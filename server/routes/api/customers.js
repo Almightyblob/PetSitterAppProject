@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const Customer = require("../../models/Customer");
-const uploadCloud = require("../config/cloudinary");
+const uploadCloud = require("../../config/coudinary");
 
 //@route        GET api/customers
 //@description  retrieve customer list
@@ -70,7 +70,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//@route        POST api/customers
+//@route        PUT api/customers
 //@description  add pets
 //@access       PUBLIC
 
@@ -94,22 +94,21 @@ router.put("/", async (req, res) => {
   }
 });
 
-//@route        POST api/customers
-//@description  add pet photo
-//@access       PUBLIC
+// //@route        post api/customers
+// //@description  add pet photo
+// //@access       PUBLIC
 
-router.put("/petphoto", uploadCloud.single("petphoto"), async (req, res) => {
-  const { secure_url } = req.file;
-  const photoURL = {
-    petphoto: secure_url
-  };
-  try {
-    //add pet
-    res.json(photoURL);
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send("Server error");
-  }
-});
+// router.post("/petphoto", uploadCloud.single("petphoto"), async (req, res) => {
+//   const { secure_url } = req.file;
+//   const photoURL = {
+//     petphoto: secure_url
+//   };
+//   try {
+//     res.json(photoURL);
+//   } catch (err) {
+//     console.log(err.message);
+//     res.status(500).send("Server error");
+//   }
+// });
 
 module.exports = router;

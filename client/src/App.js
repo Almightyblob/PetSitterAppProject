@@ -13,6 +13,7 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
+import myCalendar from "./components/myCalendar";
 import "./App.scss";
 
 if (localStorage.token) {
@@ -36,6 +37,7 @@ const App = () => {
           <Route exact path="/auth/addpet" component={AddPets} />
           <Route exact path="/auth/customers" component={CustomersList} />
           <Route exact path="/auth/customers/:id" component={CustomerDetails} />
+          <Route exact path="/calendar" component={myCalendar} />
         </Fragment>
       </Router>
     </Provider>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import CustomerCard from "../components/layout/CustomerCard";
+import CustomerCard from "../components/CustomerCard";
 import axios from "axios";
 
 function CustomersList() {
