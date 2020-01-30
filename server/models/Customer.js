@@ -4,14 +4,14 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const CustomerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   address: {
     type: String
   },
   phone: {
-    type: Number
+    type: Number,
+    unique: true
   },
   priceperday: {
     type: Number
