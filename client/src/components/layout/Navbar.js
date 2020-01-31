@@ -63,11 +63,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         aria-label="main navigation"
       >
         <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
+          <a className="navbar-item" href="/">
             <img src="../images/logoPetSitterApp.png" alt="logo" />
-          </Link>
-          <Link
-            to="/"
+          </a>
+          <a
             role="button"
             className="navbar-burger burger"
             aria-label="menu"
@@ -77,7 +76,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </Link>
+          </a>
         </div>
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

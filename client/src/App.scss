@@ -2,3 +2,10 @@
 //     background-image: url("/images/dog_and_cat_pattern-16.jpg");
 //     background-size: contain;
 // }
+#nav-toggle-state {
+    display: none;
+}
+
+#nav-toggle-state:checked~.navbar-menu {
+    display: block;
+}
