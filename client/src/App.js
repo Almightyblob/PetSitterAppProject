@@ -14,7 +14,7 @@ import setAuthToken from "./utils/setAuthToken";
 import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
 import PageNotFound from "./pages/PageNotFound";
-import myCalendar from "./components/myCalendar";
+import MyCalendar from "./components/myCalendar";
 import "./App.scss";
 
 if (localStorage.token) {
