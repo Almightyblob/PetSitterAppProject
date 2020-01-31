@@ -31,8 +31,6 @@ const AddJob = () => {
         .duration(moment(formData.startdate).diff(formData.enddate, "days"))
         .asDays()
     });
-    console.log(formData.startdate);
-    console.log(formData.enddate);
   };
 
   return (
