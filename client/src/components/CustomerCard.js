@@ -6,7 +6,7 @@ const CustomerCard = ({ name, address, phone, priceperday, id }) => {
     <div className="columns">
       <div className="column is-8 is-offset-2">
         <Link to={`/auth/customers/${id}`}>
-          <div className="columns box has-margin-bottom-40">
+          <div className="columns box has-margin-bottom-5">
             <p className="column is-one-quarter has-text-weight-semibold has-text-primary has-margin-right-20">
               {name}
             </p>
