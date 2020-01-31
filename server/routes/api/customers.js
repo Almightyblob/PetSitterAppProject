@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 // const auth = require("../../middleware/auth");
 const Customer = require("../../models/Customer");
+const Pet = require("../../models/Pet");
 
 const { validationResult } = require("express-validator");
 
@@ -65,10 +66,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/edit", async (req, res) => {
-  //update customer
+//@route        PUT api/customers/:id
+//@description  update customer
+//@access       PUBLIC
+
+router.put("/:id", async (req, res) => {
   customer = await Customer.findByIdAndUpdate(
-    id,
+    req.body.id,
     {
       name,
       address,
@@ -78,7 +82,27 @@ router.post("/edit", async (req, res) => {
     { new: true }
   );
   console.log(customer);
-  return res.json(customer);
+  res.status(200).send("Customer updated");
+});
+
+//@route        DELETE api/customers
+//@description  delete customer
+//@access       PUBLIC
+
+router.delete("/:id", async (req, res) => {
+  try {
+    let promises = [];
+    let customer = await Customer.findById(req.params.id);
+    customer.pets.forEach(pet => {
+      promises.push(Pet.findByIdAndDelete(pet._id));
+    });
+    Promise.all(promises);
+    await Customer.findByIdAndDelete(req.params.id);
+    res.status(200).send("Customer Deleted");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
 });
 
 router.post("/validation/phone-number", (req, res) => {

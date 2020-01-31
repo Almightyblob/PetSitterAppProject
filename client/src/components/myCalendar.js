@@ -29,7 +29,7 @@ function MyCalendar(props) {
       newArray.push({
         start: new Date(moment(job.startdate)),
         end: new Date(moment(job.enddate)),
-        title: job.description,
+        title: `${job.customer.name} - ${job.description}`,
         allDay: true,
         paid: job.paid,
         customer: job.customer
@@ -40,7 +40,7 @@ function MyCalendar(props) {
   };
 
   const handleSelectEvent = event => {
-    props.history.push(`/auth/customers/${event.customer}`);
+    props.history.push(`/auth/customers/${event.customer._id}`);
   };
 
   {
