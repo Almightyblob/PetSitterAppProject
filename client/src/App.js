@@ -1,10 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "../src/components/auth/Signup";
 import Login from "../src/components/auth/Login";
@@ -20,6 +15,7 @@ import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
 import PageNotFound from "./pages/PageNotFound";
 import MyCalendar from "./components/myCalendar";
+import AddJob from "./pages/AddJob";
 import "./App.scss";
 
 if (localStorage.token) {
@@ -36,16 +32,22 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/404" component={PageNotFound} />
+
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+
+            <Route exact path="/auth/addcustomer" component={AddCustomer} />
+            <Route exact path="/auth/addpet" component={AddPets} />
+            <Route exact path="/auth/customers" component={CustomersList} />
+            <Route
+              exact
+              path="/auth/customers/:id"
+              component={CustomerDetails}
+            />
+            <Route exact path="/calendar" component={MyCalendar} />
+            <Route exact path="/addjob" component={AddJob} />
+            <Route path="*" component={PageNotFound} />
           </Switch>
-          <Route path="/404" component={PageNotFound} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/auth/addcustomer" component={AddCustomer} />
-          <Route exact path="/auth/addpet" component={AddPets} />
-          <Route exact path="/auth/customers" component={CustomersList} />
-          <Route exact path="/auth/customers/:id" component={CustomerDetails} />
-          <Route exact path="/calendar" component={MyCalendar} />
         </Fragment>
       </Router>
     </Provider>
