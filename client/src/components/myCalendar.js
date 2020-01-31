@@ -10,17 +10,17 @@ const localizer = momentLocalizer(moment);
 function MyCalendar(props) {
   const [events, setEvents] = useState([
     {
-      start: new Date(),
-      end: new Date(moment().add(1, "days")),
-      title: "Some title",
+      start: "",
+      end: "",
+      title: "",
       allDay: true,
-      paid: true
+      paid: ""
     }
   ]);
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [0]);
   const fetchItems = async () => {
     const items = await axios.get("/api/jobs");
     const jobs = items.data;

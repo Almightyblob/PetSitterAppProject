@@ -81,30 +81,6 @@ router.post("/edit", async (req, res) => {
   return res.json(customer);
 });
 
-//@route        POST api/customers
-//@description  add pets
-//@access       PUBLIC
-
-router.put("/", async (req, res) => {
-  const { pettype, petname, petcomments, petphoto, id } = req.body;
-  const newPet = {
-    pettype,
-    petname,
-    petcomments,
-    petphoto
-  };
-  try {
-    //add pet
-    let customer = await Customer.findById(id);
-    customer.pets.unshift(newPet);
-    await customer.save();
-    res.json(customer);
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send("Server error");
-  }
-});
-
 router.post("/validation/phone-number", (req, res) => {
   Customer.findOne({ phone: req.body.phone }).then(customer => {
     if (customer)
