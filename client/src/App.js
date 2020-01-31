@@ -15,6 +15,7 @@ import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
 import PageNotFound from "./pages/PageNotFound";
 import MyCalendar from "./components/myCalendar";
+import AddJob from "./pages/AddJob";
 import "./App.scss";
 
 if (localStorage.token) {
@@ -43,7 +44,8 @@ const App = () => {
               path="/auth/customers/:id"
               component={CustomerDetails}
             />
-            <Route exact path="/calendar" component={myCalendar} />
+            <Route exact path="/calendar" component={MyCalendar} />
+            <Route exact path="/addjob" component={AddJob} />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </Fragment>

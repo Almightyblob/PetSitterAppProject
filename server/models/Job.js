@@ -14,7 +14,8 @@ const JobSchema = new mongoose.Schema({
     type: Number
   },
   paid: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   description: {
     type: String
