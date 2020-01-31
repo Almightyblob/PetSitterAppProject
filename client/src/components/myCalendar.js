@@ -10,17 +10,17 @@ const localizer = momentLocalizer(moment);
 function MyCalendar(props) {
   const [events, setEvents] = useState([
     {
-      start: new Date(),
-      end: new Date(moment().add(1, "days")),
-      title: "Some title",
+      start: "",
+      end: "",
+      title: "",
       allDay: true,
-      paid: true
+      paid: ""
     }
   ]);
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [0]);
   const fetchItems = async () => {
     const items = await axios.get("/api/jobs");
     const jobs = items.data;
@@ -29,7 +29,7 @@ function MyCalendar(props) {
       newArray.push({
         start: new Date(moment(job.startdate)),
         end: new Date(moment(job.enddate)),
-        title: job.description,
+        title: `${job.customer.name} - ${job.description}`,
         allDay: true,
         paid: job.paid,
         customer: job.customer
@@ -40,7 +40,7 @@ function MyCalendar(props) {
   };
 
   const handleSelectEvent = event => {
-    props.history.push(`/auth/customers/${event.customer}`);
+    props.history.push(`/auth/customers/${event.customer._id}`);
   };
 
   {

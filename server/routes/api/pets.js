@@ -29,4 +29,38 @@ router.post("/", async (req, res) => {
   }
 });
 
+//@route        UPDATE api/pets
+//@description  update a pet
+//@access       PUBLIC
+
+router.put("/:id", async (req, res) => {
+  const { type, name, comments } = req.body;
+
+  try {
+    await Pet.findByIdAndUpdate(req.params.id, {
+      type,
+      name,
+      comments
+    });
+    res.status(200).send("Pet updated");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//@route        DELETE api/pets
+//@description  delete a pet
+//@access       PUBLIC
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await Pet.findByIdAndDelete(req.params.id);
+    res.status(200).send("Pet Deleted");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = router;
