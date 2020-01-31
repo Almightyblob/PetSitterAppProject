@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
     totalprice,
     paid,
     description,
+    customer,
     customerid
   } = req.body;
 
@@ -40,7 +41,8 @@ router.post("/", async (req, res) => {
       numberofdays,
       totalprice,
       paid,
-      description
+      description,
+      customer
     });
     await job.save();
     console.log(job);

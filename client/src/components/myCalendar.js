@@ -7,12 +7,14 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = momentLocalizer(moment);
 
-function MyCalendar() {
+function MyCalendar(props) {
   const [events, setEvents] = useState([
     {
       start: new Date(),
       end: new Date(moment().add(1, "days")),
-      title: "Some title"
+      title: "Some title",
+      allDay: true,
+      paid: true
     }
   ]);
 
@@ -20,19 +22,25 @@ function MyCalendar() {
     fetchItems();
   }, []);
   const fetchItems = async () => {
-    debugger;
     const items = await axios.get("/api/jobs");
     const jobs = items.data;
-    let newArray = jobs.map(job => [
-      ...events,
-      {
+    let newArray = [...events];
+    jobs.forEach(job => [
+      newArray.push({
         start: new Date(moment(job.startdate)),
         end: new Date(moment(job.enddate)),
-        title: job.description
-      }
+        title: job.description,
+        allDay: true,
+        paid: job.paid,
+        customer: job.customer
+      })
     ]);
-    console.log(newArray[0]);
-    setEvents(newArray[0]);
+    console.log(newArray);
+    setEvents(newArray);
+  };
+
+  const handleSelectEvent = event => {
+    props.history.push(`/auth/customers/${event.customer}`);
   };
 
   {
@@ -40,11 +48,29 @@ function MyCalendar() {
       <div className="columns is-centered">
         <div className="column is-10">
           <Calendar
+            onSelectEvent={handleSelectEvent}
             localizer={localizer}
             defaultDate={new Date()}
             defaultView="month"
             events={events}
             style={{ height: "80vh" }}
+            eventPropGetter={event => {
+              let newStyle = {
+                backgroundColor: "#0e90f4",
+                color: "white",
+                borderRadius: "0px",
+                border: "none"
+              };
+
+              if (event.paid) {
+                newStyle.backgroundColor = "#00d1b2";
+              }
+
+              return {
+                className: "",
+                style: newStyle
+              };
+            }}
           />
         </div>
       </div>
