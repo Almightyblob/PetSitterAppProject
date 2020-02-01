@@ -63,7 +63,7 @@ const App = () => {
               component={EditCustomer}
             />
             <Route exact path="/calendar" component={MyCalendar} />
-            <Route exact path="/addjob/:id" component={AddJob} />
+            <Route exact path="/auth/addjob/:id" component={AddJob} />
 
             <Route path="*" component={PageNotFound} />
           </Switch>
