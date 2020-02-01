@@ -35,7 +35,6 @@ const AddPet = props => {
       console.log(res.data);
 
       props.history.push(`/auth/customers/${props.location.state.id}`);
-
     } catch (err) {
       console.log(err.response.data);
     }
@@ -43,10 +42,7 @@ const AddPet = props => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column">
-          <div className="has-padding-bottom-20">
-            <Alert />
-          </div>
+        <div className="column has-padding-bottom-20">
           <h1 className="is-size-3">Add a Pet</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
