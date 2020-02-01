@@ -20,6 +20,7 @@ const AddJob = () => {
         .duration(moment(formData.startdate).diff(formData.enddate, "days"))
         .asDays()
     });
+    console.log(moment(formData.startdate).format("DD/MM/YYYY"));
   };
 
   const handleChangeEnd = date => {

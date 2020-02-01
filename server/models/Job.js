@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const JobSchema = new mongoose.Schema({
+  customer: { type: ObjectId, ref: "customer" },
   startdate: {
     type: String
   },

@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 
 router.get("/", async (req, res) => {
   try {
-    let jobs = await Job.find({});
+    let jobs = await Job.find({}).populate("customer");
     res.json(jobs);
   } catch (err) {
     console.log(err.message);
@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
     totalprice,
     paid,
     description,
+    customer,
     customerid
   } = req.body;
 
@@ -40,7 +41,8 @@ router.post("/", async (req, res) => {
       numberofdays,
       totalprice,
       paid,
-      description
+      description,
+      customer
     });
     await job.save();
     console.log(job);
@@ -48,6 +50,20 @@ router.post("/", async (req, res) => {
       $push: { jobs: mongoose.Types.ObjectId(job.id) }
     });
     res.status(200).send("Job created");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//@route        DELETE api/jobs
+//@description  delete job
+//@access       PUBLIC
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await Job.findByIdAndDelete(req.params.id);
+    res.status(200).send("Assignment Deleted");
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
