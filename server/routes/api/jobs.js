@@ -18,11 +18,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-//@route        POST api/jobs
+//@route        POST api/jobs/:id
 //@description  create job
 //@access       PUBLIC
 
-router.post("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
   const {
     startdate,
     enddate,
@@ -30,8 +30,7 @@ router.post("/", async (req, res) => {
     totalprice,
     paid,
     description,
-    customer,
-    customerid
+    customer
   } = req.body;
 
   try {
@@ -46,7 +45,7 @@ router.post("/", async (req, res) => {
     });
     await job.save();
     console.log(job);
-    await Customer.findByIdAndUpdate(customerid, {
+    await Customer.findByIdAndUpdate(req.params.id, {
       $push: { jobs: mongoose.Types.ObjectId(job.id) }
     });
     res.status(200).send("Job created");
