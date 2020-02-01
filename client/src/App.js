@@ -17,6 +17,7 @@ import PageNotFound from "./pages/PageNotFound";
 import MyCalendar from "./components/myCalendar";
 import AddJob from "./pages/AddJob";
 import EditCustomer from "./pages/EditCustomer";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.scss";
 
 if (localStorage.token) {
@@ -36,14 +37,23 @@ const App = () => {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
 
-            <Route exact path="/auth/addcustomer" component={AddCustomer} />
-            <Route exact path="/auth/addpet" component={AddPets} />
-            <Route exact path="/auth/customers" component={CustomersList} />
-            <Route
+            <PrivateRoute
+              exact
+              path="/auth/addcustomer"
+              component={AddCustomer}
+            />
+            <PrivateRoute exact path="/auth/addpet" component={AddPets} />
+            <PrivateRoute
+              exact
+              path="/auth/customers"
+              component={CustomersList}
+            />
+            <PrivateRoute
               exact
               path="/auth/customers/:id"
               component={CustomerDetails}
             />
+
             <Route
               exact
               path="/auth/customers/edit/:id"
@@ -51,6 +61,7 @@ const App = () => {
             />
             <Route exact path="/calendar" component={MyCalendar} />
             <Route exact path="/addjob/:id" component={AddJob} />
+
             <Route path="*" component={PageNotFound} />
           </Switch>
         </Fragment>
