@@ -25,6 +25,7 @@ function MyCalendar(props) {
     const items = await axios.get("/api/jobs");
     const jobs = items.data;
     let newArray = [...events];
+
     if (Object.keys(jobs).length === 0) {
       return;
     } else {
@@ -50,6 +51,7 @@ function MyCalendar(props) {
         }
       });
     }
+
     console.log(newArray);
     setEvents(newArray);
   };
@@ -68,7 +70,7 @@ function MyCalendar(props) {
             defaultDate={new Date()}
             defaultView="month"
             events={events}
-            style={{ height: "70vh" }}
+            style={{ height: "80vh" }}
             eventPropGetter={event => {
               let newStyle = {
                 backgroundColor: "#0e90f4",
