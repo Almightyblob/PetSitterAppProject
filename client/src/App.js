@@ -5,6 +5,8 @@ import Signup from "../src/components/auth/Signup";
 import Login from "../src/components/auth/Login";
 import AddCustomer from "./pages/AddCustomer";
 import AddPets from "./pages/AddPets";
+// import EditPet from "./pages/EditPet";
+
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -43,6 +45,7 @@ const App = () => {
               component={AddCustomer}
             />
             <PrivateRoute exact path="/auth/addpet" component={AddPets} />
+            {/* <PrivateRoute exact path="/auth/pet/edit" component={EditPet} /> */}
             <PrivateRoute
               exact
               path="/auth/customers"
@@ -54,7 +57,7 @@ const App = () => {
               component={CustomerDetails}
             />
 
-            <Route
+            <PrivateRoute
               exact
               path="/auth/customers/edit/:id"
               component={EditCustomer}

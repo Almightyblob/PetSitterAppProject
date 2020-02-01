@@ -29,7 +29,7 @@ function MyCalendar(props) {
       newArray.push({
         start: new Date(moment(job.startdate)),
         end: new Date(moment(job.enddate)),
-        title: `${job.customer.name} - ${job.description}`,
+        title: `${job.customer} - ${job.description}`,
         allDay: true,
         paid: job.paid,
         customer: job.customer
@@ -53,7 +53,7 @@ function MyCalendar(props) {
             defaultDate={new Date()}
             defaultView="month"
             events={events}
-            style={{ height: "70vh" }}
+            style={{ height: "80vh" }}
             eventPropGetter={event => {
               let newStyle = {
                 backgroundColor: "#0e90f4",

@@ -39,7 +39,7 @@ function CustomerDetails(props) {
           </div>
           <div className="columns">
             <Link
-              to=""
+              to={`/auth/customers/edit/${props.match.params.id}`}
               className="button is-info has-text-weight-semibold is-overlay has-margin-bottom-15 has-margin-right-30 is-fullwidth"
             >
               Edit a customer
@@ -82,44 +82,48 @@ function CustomerDetails(props) {
                   <p className="has-text-weight-semibold">Comments:</p>
                   <p>{pet.comments}</p>
                 </div>
+                <div className="column is-one-quarter is-multiline">
+                  <Link
+                    to=""
+                    className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100 buttonwidth"
+                  >
+                    Edit
+                  </Link>
+
+                  <Link
+                    onClick={() =>
+                      axios
+                        .delete(`/api/pets/${pet._id}`)
+                        .then(() => window.location.reload())
+                        .catch(err => console.log(err))
+                    }
+                    to={`/auth/customers/${props.match.params.id}`}
+                    className="button is-danger has-text-weight-semibold has-margin-bottom-10 buttonwidth"
+                  >
+                    Delete
+                  </Link>
+                </div>
 
                 {/* <img src={pet.photo} alt="" /> */}
               </div>
             ))}
-          <div className="columns">
-            <Link
-              to=""
-              className="button is-info has-text-weight-semibold is-overlay has-margin-bottom-15 has-margin-right-30 is-fullwidth"
-            >
-              Edit a pet
-            </Link>
 
-            <Link
-              to=""
-              className="button is-primary has-text-weight-semibold has-margin-bottom-15 has-margin-right-30 is-fullwidth"
+          <div className="columns">
+            <button
+              onClick={() =>
+                props.history.push("/auth/addpet", {
+                  id: props.match.params.id
+                })
+              }
+              className="button is-primary has-text-weight-semibold has-margin-top-40 is-fullwidth"
             >
               Add a pet
-            </Link>
-
-            <Link
-              onClick={() =>
-                axios
-                  .delete(
-                    `/api/customers/${props.match.params.id}/${props.match.params.pets}`
-                  )
-                  .then(() => window.location.reload())
-                  .catch(err => console.log(err))
-              }
-              to="/auth/customers"
-              className="button is-danger has-text-weight-semibold has-margin-bottom-10 is-fullwidth"
-            >
-              Delete a pet
-            </Link>
+            </button>
           </div>
           <div className="columns">
             <Link
               to=""
-              className="button is-warning has-text-weight-semibold is-overlay has-margin-bottom-15 has-margin-top-50 is-fullwidth"
+              className="button is-warning has-text-weight-semibold is-overlay has-margin-bottom-50 has-margin-top-30 is-fullwidth"
             >
               Add a new job
             </Link>
