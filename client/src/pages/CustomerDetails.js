@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function CustomerDetails(props) {
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [0]);
   const [items, setItems] = useState(null);
   const fetchItems = async () => {
     const customer = await axios.get(`/api/customers/${props.match.params.id}`);
