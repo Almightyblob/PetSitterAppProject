@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import "../App.scss";
+import Calendar from "../components/myCalendar";
 // import CustomerCard from "../components/layout/CustomerCard";
 import { Link } from "react-router-dom";
 function CustomerDetails(props) {
@@ -12,13 +13,12 @@ function CustomerDetails(props) {
     const customer = await axios.get(`/api/customers/${props.match.params.id}`);
     const items = customer.data;
     setItems(items);
-    console.log(items.pets);
   };
 
   return items ? (
     <Fragment>
       <div className="columns">
-        <div className="column is-8 is-offset-2 column is-8-mobile is-offset-2-mobile">
+        <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile">
           <h3 className="is-size-3 has-text-weight-semibold has-text-primary has-text-centered-mobile has-margin-bottom-20">
             CUSTOMER
           </h3>
@@ -46,14 +46,13 @@ function CustomerDetails(props) {
             </Link>
 
             <Link
-              to=""
-              className="button is-primary has-text-weight-semibold has-margin-bottom-15 has-margin-right-30 is-fullwidth"
-            >
-              Add a customer
-            </Link>
-
-            <Link
-              to=""
+              onClick={() =>
+                axios
+                  .delete(`/api/customers/${props.match.params.id}`)
+                  .then(() => window.location.reload())
+                  .catch(err => console.log(err))
+              }
+              to="/auth/customers"
               className="button is-danger has-text-weight-semibold has-margin-bottom-10 is-fullwidth"
             >
               Delete a customer
@@ -62,7 +61,7 @@ function CustomerDetails(props) {
         </div>
       </div>
       <div className="columns">
-        <div className="column is-8 is-offset-2 column is-8-mobile is-offset-2-mobile">
+        <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile">
           <div className="columns">
             <div className="column">
               <h3 className="is-size-3 has-text-weight-semibold has-text-info has-text-centered-mobile has-margin-bottom-20 has-margin-top-40">
@@ -103,17 +102,37 @@ function CustomerDetails(props) {
             </Link>
 
             <Link
-              to=""
+              onClick={() =>
+                axios
+                  .delete(
+                    `/api/customers/${props.match.params.id}/${props.match.params.pets}`
+                  )
+                  .then(() => window.location.reload())
+                  .catch(err => console.log(err))
+              }
+              to="/auth/customers"
               className="button is-danger has-text-weight-semibold has-margin-bottom-10 is-fullwidth"
             >
               Delete a pet
             </Link>
           </div>
+          <div className="columns">
+            <Link
+              to=""
+              className="button is-warning has-text-weight-semibold is-overlay has-margin-bottom-15 has-margin-top-50 is-fullwidth"
+            >
+              Add a new job
+            </Link>
+          </div>
         </div>
+      </div>
+      <div className="columns"></div>
+      <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile is-paddingless mobileCalendarHeight">
+        <Calendar />
       </div>
     </Fragment>
   ) : (
-    <h1>Loading</h1>
+    <h1>Loading...</h1>
   );
 }
 export default CustomerDetails;

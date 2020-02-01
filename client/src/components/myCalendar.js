@@ -46,14 +46,14 @@ function MyCalendar(props) {
   {
     return (
       <div className="columns is-centered">
-        <div className="column is-10">
+        <div className="column">
           <Calendar
             onSelectEvent={handleSelectEvent}
             localizer={localizer}
             defaultDate={new Date()}
             defaultView="month"
             events={events}
-            style={{ height: "80vh" }}
+            style={{ height: "70vh" }}
             eventPropGetter={event => {
               let newStyle = {
                 backgroundColor: "#0e90f4",
