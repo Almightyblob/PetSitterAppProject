@@ -9,6 +9,9 @@ const PetSchema = new mongoose.Schema({
   },
   comments: {
     type: String
+  },
+  customerid: {
+    type: String
   }
 });
 module.exports = Pet = mongoose.model("pets", PetSchema);

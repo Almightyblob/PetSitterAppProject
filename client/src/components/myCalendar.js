@@ -25,16 +25,33 @@ function MyCalendar(props) {
     const items = await axios.get("/api/jobs");
     const jobs = items.data;
     let newArray = [...events];
-    jobs.forEach(job => [
-      newArray.push({
-        start: new Date(moment(job.startdate)),
-        end: new Date(moment(job.enddate)),
-        title: `${job.customer} - ${job.description}`,
-        allDay: true,
-        paid: job.paid,
-        customer: job.customer
-      })
-    ]);
+
+    if (Object.keys(jobs).length === 0) {
+      return;
+    } else {
+      jobs.forEach(job => {
+        if (!job.customer) {
+          newArray.push({
+            start: new Date(moment(job.startdate)),
+            end: new Date(moment(job.enddate)),
+            title: `Customer not in DB - ${job.description}`,
+            allDay: true,
+            paid: job.paid,
+            customer: ""
+          });
+        } else {
+          newArray.push({
+            start: new Date(moment(job.startdate)),
+            end: new Date(moment(job.enddate)),
+            title: `${job.customer.name} - ${job.description}`,
+            allDay: true,
+            paid: job.paid,
+            customer: job.customer
+          });
+        }
+      });
+    }
+
     console.log(newArray);
     setEvents(newArray);
   };
