@@ -4,9 +4,11 @@ const Customer = require("../../models/Customer");
 const Pet = require("../../models/Pet");
 const mongoose = require("mongoose");
 
+
 //@route        GET api/customers/:id
 //@description  retrieve customer list
 //@access       PUBLIC
+
 
 router.get("/:id", async (req, res) => {
   try {
@@ -21,10 +23,8 @@ router.get("/:id", async (req, res) => {
 //@route        POST api/pets
 //@description  create pet
 //@access       PUBLIC
-
 router.post("/", async (req, res) => {
   const { type, name, comments, customerid } = req.body;
-
   try {
     let pet = new Pet({
       type,
@@ -42,14 +42,11 @@ router.post("/", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 //@route        UPDATE api/pets
 //@description  update a pet
 //@access       PUBLIC
-
 router.put("/:id", async (req, res) => {
   const { type, name, comments } = req.body;
-
   try {
     await Pet.findByIdAndUpdate(
       req.params.id,
@@ -66,11 +63,9 @@ router.put("/:id", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 //@route        DELETE api/pets
 //@description  delete a pet
 //@access       PUBLIC
-
 router.delete("/:id", async (req, res) => {
   try {
     await Pet.findByIdAndDelete(req.params.id);
@@ -80,5 +75,4 @@ router.delete("/:id", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 module.exports = router;
