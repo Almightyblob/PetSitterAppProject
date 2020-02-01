@@ -121,12 +121,14 @@ function CustomerDetails(props) {
             </button>
           </div>
           <div className="columns">
-            <Link
-              to=""
-              className="button is-warning has-text-weight-semibold is-overlay has-margin-bottom-50 has-margin-top-30 is-fullwidth"
+            <button
+              onClick={() =>
+                props.history.push(`/auth/addjob/${props.match.params.id}`)
+              }
+              className="button is-warning has-text-weight-semibold has-margin-top-40 is-fullwidth"
             >
-              Add a new job
-            </Link>
+              Add a Job
+            </button>
           </div>
         </div>
       </div>
