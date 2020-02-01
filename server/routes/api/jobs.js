@@ -61,6 +61,13 @@ router.post("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
+    let job = await Job.findById(req.params.id);
+    console.log(job);
+    await Customer.findByIdAndUpdate(
+      job.customer,
+      { $pull: { jobs: { $in: req.params.id } } },
+      { multi: true }
+    );
     await Job.findByIdAndDelete(req.params.id);
     res.status(200).send("Assignment Deleted");
   } catch (err) {
