@@ -4,6 +4,20 @@ const Customer = require("../../models/Customer");
 const Pet = require("../../models/Pet");
 const mongoose = require("mongoose");
 
+//@route        GET api/customers/:id
+//@description  retrieve customer list
+//@access       PUBLIC
+
+router.get("/:id", async (req, res) => {
+  try {
+    let pet = await Pet.findById(req.params.id);
+    res.json(pet.data);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 //@route        POST api/pets
 //@description  create pet
 //@access       PUBLIC
@@ -37,11 +51,15 @@ router.put("/:id", async (req, res) => {
   const { type, name, comments } = req.body;
 
   try {
-    await Pet.findByIdAndUpdate(req.params.id, {
-      type,
-      name,
-      comments
-    });
+    await Pet.findByIdAndUpdate(
+      req.params.id,
+      {
+        type,
+        name,
+        comments
+      },
+      { useFindAndModify: false }
+    );
     res.status(200).send("Pet updated");
   } catch (err) {
     console.log(err.message);
