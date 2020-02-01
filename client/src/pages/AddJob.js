@@ -110,28 +110,32 @@ const AddJob = props => {
 
   return (
     <Fragment>
-      <p>Number of days: {formData.numberOfDays}</p>
-      <DatePicker
-        selected={formData.startdate}
-        onChange={handleChangeStart}
-        dateFormat="d MMMM, yyyy"
-        todayButton="Today"
-      />
-      <DatePicker
-        selected={formData.enddate}
-        onChange={handleChangeEnd}
-        minDate={formData.startdate}
-        dateFormat="d MMMM, yyyy"
-        todayButton="Today"
-      />
-      <input
-        type="text"
-        name="description"
-        value={formData.description}
-        placeholder="Add a Comment"
-        onChange={handleInput}
-      />
-      <button onClick={sendData}>Create Assignment</button>
+      {/* <p>Number of days: {formData.numberOfDays}</p> */}
+      <div className="box columns is centered">
+        <div className="column">
+          <DatePicker
+            selected={formData.startdate}
+            onChange={handleChangeStart}
+            dateFormat="d MMMM, yyyy"
+            todayButton="Today"
+          />
+          <DatePicker
+            selected={formData.enddate}
+            onChange={handleChangeEnd}
+            minDate={formData.startdate}
+            dateFormat="d MMMM, yyyy"
+            todayButton="Today"
+          />
+          <input
+            type="text"
+            name="description"
+            value={formData.description}
+            placeholder="Add a Comment"
+            onChange={handleInput}
+          />
+          <button onClick={sendData}>Create petitting</button>
+        </div>
+      </div>
     </Fragment>
   );
 };

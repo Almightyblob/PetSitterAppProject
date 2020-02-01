@@ -4,13 +4,26 @@ import axios from "axios";
 import Alert from "../components/layout/Alert";
 
 const AddPet = props => {
+  useEffect(() => {
+    fetchItems();
+  }, [0]);
+
   const [formData, setFormData] = useState({
     customerid: props.location.state.id,
     type: "",
     name: "",
     comments: ""
   });
-
+  const fetchItems = async () => {
+    const customer = await axios.get(`/api/customers/${props.match.params.id}`);
+    const items = customer.data;
+    setFormData({
+      name: items.name,
+      address: items.address,
+      phone: items.phone,
+      priceperday: items.priceperday
+    });
+  };
   const { type, name, comments, customerid } = formData;
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,8 +35,7 @@ const AddPet = props => {
       customerid,
       type,
       name,
-      comments,
-      customer: customerid
+      comments
     };
     try {
       const config = {
@@ -43,7 +55,10 @@ const AddPet = props => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column has-padding-bottom-20">
+        <div className="column">
+          <div className="has-padding-bottom-20">
+            <Alert />
+          </div>
           <h1 className="is-size-3">Add a Pet</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">

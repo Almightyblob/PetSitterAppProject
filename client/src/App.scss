@@ -1,4 +1,13 @@
-// html {
-//     background-image: url("/images/dog_and_cat_pattern-16.jpg");
-//     background-size: contain;
-// }
+@media screen and (max-width: 1000px) {
+    .rbc-toolbar {
+        margin-left: 15% !important;
+        margin-right: 15% !important;
+    }
+    .rbc-calendar {
+        height: 100vh !important;
+    }
+}
+
+.buttonwidth {
+    width: 70%;
+}
