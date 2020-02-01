@@ -97,7 +97,7 @@ const AddPet = props => {
               <p className="control">
                 <input
                   type="submit"
-                  className="button is-link"
+                  className="button is-info"
                   value="Add Pet"
                 />
               </p>

@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import FormLayout from "../components/layout/Form";
 import axios from "axios";
 var moment = require("moment");
 
@@ -109,34 +110,41 @@ const AddJob = props => {
   };
 
   return (
-    <Fragment>
+    <FormLayout>
       {/* <p>Number of days: {formData.numberOfDays}</p> */}
-      <div className="box columns is centered">
-        <div className="column">
-          <DatePicker
-            selected={formData.startdate}
-            onChange={handleChangeStart}
-            dateFormat="d MMMM, yyyy"
-            todayButton="Today"
-          />
-          <DatePicker
-            selected={formData.enddate}
-            onChange={handleChangeEnd}
-            minDate={formData.startdate}
-            dateFormat="d MMMM, yyyy"
-            todayButton="Today"
-          />
-          <input
-            type="text"
-            name="description"
-            value={formData.description}
-            placeholder="Add a Comment"
-            onChange={handleInput}
-          />
-          <button onClick={sendData}>Create petitting</button>
-        </div>
+      <div className="box columns is-centered is-multiline">
+        <DatePicker
+          className="column is-full input is-info"
+          selected={formData.startdate}
+          onChange={handleChangeStart}
+          dateFormat="d MMMM, yyyy"
+          todayButton="Today"
+        />
+        <DatePicker
+          className="column is-full has-margin-left-20 input is-info"
+          selected={formData.enddate}
+          onChange={handleChangeEnd}
+          minDate={formData.startdate}
+          dateFormat="d MMMM, yyyy"
+          todayButton="Today"
+        />
+
+        <input
+          type="text"
+          name="description"
+          value={formData.description}
+          placeholder="Add a Comment"
+          onChange={handleInput}
+          className="column is-full has-margin-top-20"
+        />
+        <input
+          className="button is-info has-margin-top-20"
+          onClick={sendData}
+          type="submit"
+          value="Create petitting"
+        />
       </div>
-    </Fragment>
+    </FormLayout>
   );
 };
 
