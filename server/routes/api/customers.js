@@ -66,23 +66,28 @@ router.post("/", async (req, res) => {
   }
 });
 
-//@route        PUT api/customers/:id
+//@route        PUT api/customers/edit/:id
 //@description  update customer
 //@access       PUBLIC
 
-router.put("/:id", async (req, res) => {
-  customer = await Customer.findByIdAndUpdate(
-    req.body.id,
-    {
-      name,
-      address,
-      phone,
-      priceperday
-    },
-    { new: true }
-  );
-  console.log(customer);
-  res.status(200).send("Customer updated");
+router.put("/edit/:id", async (req, res) => {
+  try {
+    const { name, address, phone, priceperday } = req.body;
+    await Customer.findByIdAndUpdate(
+      req.params.id,
+      {
+        name,
+        address,
+        phone,
+        priceperday
+      },
+      { useFindAndModify: false }
+    );
+    res.status(200).send("Customer updated");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send(err.message);
+  }
 });
 
 //@route        DELETE api/customers
