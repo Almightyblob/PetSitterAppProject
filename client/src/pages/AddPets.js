@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
 import Alert from "../components/layout/Alert";
-import AddCustomer from "./AddCustomer";
 
 const AddPet = props => {
   const [formData, setFormData] = useState({
@@ -34,7 +33,9 @@ const AddPet = props => {
       const body = JSON.stringify(newPet);
       const res = await axios.post("/api/pets", body, config);
       console.log(res.data);
-      props.history.push(`/auth/customer/${props.location.state.id}`);
+
+      props.history.push(`/auth/customers/${props.location.state.id}`);
+
     } catch (err) {
       console.log(err.response.data);
     }
