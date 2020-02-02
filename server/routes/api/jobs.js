@@ -96,8 +96,7 @@ router.put("/:id", async (req, res) => {
     totalprice,
     paid,
     archived,
-    description,
-    customer
+    description
   } = req.body;
   try {
     await Job.findByIdAndUpdate(
@@ -109,8 +108,7 @@ router.put("/:id", async (req, res) => {
         totalprice,
         paid,
         archived,
-        description,
-        customer
+        description
       },
       { useFindAndModify: false }
     );

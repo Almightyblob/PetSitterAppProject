@@ -11,8 +11,7 @@ const JobBox = ({
   priceperday,
   paid,
   archived,
-  description,
-  customerid
+  description
 }) => {
   const [state, setState] = useState({
     jobid,
@@ -23,23 +22,39 @@ const JobBox = ({
     priceperday,
     paid,
     archived,
-    description,
-    customerid
+    description
   });
 
   const setArchived = async () => {
-    setState({ ...state, archived: true });
-    let updatedJob = { ...state };
+    var updatedArchived = { ...state, archived: true };
     try {
       const config = {
         headers: {
           "Content-Type": "application/json"
         }
       };
-      const body = JSON.stringify(updatedJob);
+      const body = JSON.stringify(updatedArchived);
       await axios.put(`/api/jobs/${state.jobid}`, body, config);
       window.location.reload();
     } catch (err) {}
+  };
+
+  const setPaid = async e => {
+    var updatedPaid = { ...state, paid: e.target.value };
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      const body = JSON.stringify(updatedPaid);
+      await axios.put(`/api/jobs/${state.jobid}`, body, config);
+      window.location.reload();
+    } catch (err) {}
+  };
+  const deleteJob = async () => {
+    await axios.delete(`/api/jobs/${state.jobid}`);
+    window.location.reload();
   };
 
   if (archived) {
@@ -73,9 +88,11 @@ const JobBox = ({
             <p>Paid:</p>
             <p className="control">
               <span className="select">
-                <select>
-                  <option>no</option>
-                  <option selected>yes</option>
+                <select onChange={setPaid}>
+                  <option value={false}>no</option>
+                  <option selected value={true}>
+                    yes
+                  </option>
                 </select>
               </span>
             </p>
@@ -94,12 +111,12 @@ const JobBox = ({
             Edit
           </Link>
 
-          <Link
-            to=""
+          <div
+            onClick={deleteJob}
             className="button is-danger has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
           >
             Delete
-          </Link>
+          </div>
 
           <div
             onClick={setArchived}
@@ -138,9 +155,11 @@ const JobBox = ({
             <p>Paid:</p>
             <p className="control">
               <span className="select">
-                <select>
-                  <option selected>no</option>
-                  <option>yes</option>
+                <select onChange={setPaid}>
+                  <option selected value={false}>
+                    no
+                  </option>
+                  <option value={true}>yes</option>
                 </select>
               </span>
             </p>
@@ -159,12 +178,12 @@ const JobBox = ({
             Edit
           </Link>
 
-          <Link
-            to=""
+          <div
+            onClick={deleteJob}
             className="button is-danger has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
           >
             Delete
-          </Link>
+          </div>
 
           <div
             onClick={setArchived}
