@@ -103,7 +103,7 @@ function CustomerDetails(props) {
       </div>
       <div className="columns"></div>
       <div className="column is-8 is-offset-2 is-full-mobile is-paddingless has-padding-left-5-mobile has-padding-right-5-mobile mobileCalendarHeight has-margin-top-60">
-        <Calendar />
+        <Calendar id={props.match.params.id} />
       </div>
     </Fragment>
   ) : (
