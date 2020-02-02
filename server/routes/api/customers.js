@@ -26,7 +26,9 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    let customer = await Customer.findById(req.params.id).populate("pets");
+    let customer = await await Customer.findById(req.params.id)
+      .populate("pets")
+      .populate("jobs");
     res.json(customer);
   } catch (err) {
     console.log(err.message);

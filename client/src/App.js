@@ -50,7 +50,7 @@ const App = () => {
               component={EditCustomer}
             />
             <PrivateRoute exact path="/auth/addpet" component={AddPets} />
-            <PrivateRoute exact path="/auth/pet/edit" component={EditPet} />
+            <PrivateRoute exact path="/auth/pet/edit/:id" component={EditPet} />
             <PrivateRoute
               exact
               path="/auth/customers"
