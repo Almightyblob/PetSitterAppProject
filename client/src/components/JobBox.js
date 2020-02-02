@@ -105,7 +105,7 @@ const JobBox = ({
 
         <div className="columns has-margin-bottom-60 has-margin-top-20">
           <Link
-            to=""
+            to={`/auth/editjob/${state.jobid}`}
             className="button is-info has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
           >
             Edit
@@ -172,7 +172,7 @@ const JobBox = ({
 
         <div className="columns has-margin-bottom-60 has-margin-top-20">
           <Link
-            to=""
+            to={`/auth/editjob/${state.jobid}`}
             className="button is-info has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
           >
             Edit

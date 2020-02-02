@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     let job = await Job.findById(req.params.id).populate("customer");
-    res.json(job.data);
+    res.json(job);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
