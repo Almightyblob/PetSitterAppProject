@@ -16,8 +16,8 @@ import setAuthToken from "./utils/setAuthToken";
 import CustomersList from "./pages/CustomersList";
 import CustomerDetails from "./pages/CustomerDetails";
 import PageNotFound from "./pages/PageNotFound";
-import MyCalendar from "./components/myCalendar";
 import AddJob from "./pages/AddJob";
+import EditJob from "./pages/EditJob";
 import EditCustomer from "./pages/EditCustomer";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.scss";
@@ -61,10 +61,8 @@ const App = () => {
               path="/auth/customers/:id"
               component={CustomerDetails}
             />
-
-            <Route exact path="/calendar" component={MyCalendar} />
-            <Route exact path="/auth/addjob/:id" component={AddJob} />
-
+            <PrivateRoute exact path="/auth/addjob/:id" component={AddJob} />
+            <PrivateRoute exact path="/auth/editjob/:id" component={EditJob} />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </Fragment>

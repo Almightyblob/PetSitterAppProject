@@ -44,7 +44,7 @@ function MyCalendar(props) {
         if (!job.customer) {
           newArray.push({
             start: new Date(moment(job.startdate)),
-            end: new Date(moment(job.enddate)),
+            end: new Date(moment(job.enddate).substract(1, "days")),
             title: "Customer not in DB",
             allDay: true,
             paid: job.paid,
@@ -53,7 +53,7 @@ function MyCalendar(props) {
         } else {
           newArray.push({
             start: new Date(moment(job.startdate)),
-            end: new Date(moment(job.enddate)),
+            end: new Date(moment(job.enddate).add(1, "days")),
             title: `${job.customer.name}`,
             allDay: true,
             paid: job.paid,
