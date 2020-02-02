@@ -41,66 +41,73 @@ const AddPet = props => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column has-padding-bottom-20">
-          <h1 className="is-size-3">Add a Pet</h1>
-          <form onSubmit={e => onSubmit(e)}>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Type of Pet"
-                  name="type"
-                  value={type}
-                  onChange={e => onChange(e)}
-                  required
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-user"></i>
-                </span>
-              </p>
+        <div className="column is-4 has-margin-top-15">
+          <img src="/images/cat3.png" alt="cat" />
+        </div>
+        <div className="column is-8">
+          <div className="box columns is-centered">
+            <div className="column has-padding-bottom-20">
+              <h1 className="is-size-3">Add a Pet</h1>
+              <form onSubmit={e => onSubmit(e)}>
+                <div className="field">
+                  <p className="control has-icons-left has-icons-right">
+                    <input
+                      className="input"
+                      type="text"
+                      placeholder="Type of Pet"
+                      name="type"
+                      value={type}
+                      onChange={e => onChange(e)}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user"></i>
+                    </span>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control has-icons-left has-icons-right">
+                    <input
+                      className="input"
+                      type="text"
+                      placeholder="Name"
+                      name="name"
+                      value={name}
+                      onChange={e => onChange(e)}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-home"></i>
+                    </span>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control has-icons-left">
+                    <input
+                      className="input"
+                      type="textarea"
+                      placeholder="Comments"
+                      name="comments"
+                      value={comments}
+                      onChange={e => onChange(e)}
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-mobile-alt"></i>
+                    </span>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <input
+                      type="submit"
+                      className="button is-info"
+                      value="Add Pet"
+                    />
+                  </p>
+                </div>
+              </form>
             </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Name"
-                  name="name"
-                  value={name}
-                  onChange={e => onChange(e)}
-                  required
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-home"></i>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left">
-                <input
-                  className="input"
-                  type="textarea"
-                  placeholder="Comments"
-                  name="comments"
-                  value={comments}
-                  onChange={e => onChange(e)}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-mobile-alt"></i>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  type="submit"
-                  className="button is-info"
-                  value="Add Pet"
-                />
-              </p>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </FormLayout>
