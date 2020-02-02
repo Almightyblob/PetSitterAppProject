@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 const JobBox = ({
@@ -29,83 +28,140 @@ const JobBox = ({
   }
   if (paid) {
     return (
-      <div key={state.jobid} className="columns box has-margin-bottom-40">
-        <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
-          {state.startdate}
-        </p>
-        <p className="column is-1 has-margin-right-20">{state.enddate}</p>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Days:</p>
-          <p>{state.numberofdays}</p>
+      <div className="columns is-full">
+        <div key={state.jobid} className="columns box has-margin-bottom-20">
+          <div className="column is-2">
+            <p className="has-text-weight-semibold">Start:</p>
+            <p className="has-text-weight-semibold has-text-primary">
+              {state.startdate}
+            </p>
+          </div>
+          <div className="column is-2">
+            <p className="has-text-weight-semibold">End:</p>
+            <p className="has-text-weight-semibold has-text-primary">
+              {state.enddate}
+            </p>
+          </div>
+          <div className="column is-1 has-text-weight-semibold">
+            <p>Days:</p>
+            <p>{state.numberofdays}</p>
+          </div>
+          <div className="column is-1 has-text-weight-semibold">
+            <p>€/Day:</p>
+            <p>{state.priceperday}</p>
+          </div>
+          <div className="column is-1 has-text-weight-semibold">
+            <p>Total €:</p>
+            <p>{state.totalprice}</p>
+          </div>
+          <div class="column field is-2 has-text-weight-semibold ">
+            <p>Paid:</p>
+            <p class="control">
+              <span class="select">
+                <select>
+                  <option>no</option>
+                  <option selected>yes</option>
+                </select>
+              </span>
+            </p>
+          </div>
+          <div className="column is-3">
+            <p className="has-text-weight-semibold">Comments:</p>
+            <p>{state.description}</p>
+          </div>
         </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Daily Price:</p>
-          <p>{state.priceperday}</p>
-        </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Total:</p>
-          <p>{state.totalprice}</p>
-        </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Paid:</p>
-          <p className="has-text-primary">Yes</p>
-        </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Comments:</p>
-          <p>{state.description}</p>
+
+        <div className="columns has-margin-bottom-60 has-margin-top-20">
+          <Link
+            to=""
+            className="button is-info has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
+          >
+            Edit
+          </Link>
+
+          <Link
+            to=""
+            className="button is-danger has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
+          >
+            Delete
+          </Link>
+
+          <Link
+            to=""
+            className="button is-warning has-text-weight-semibold is-fullwidth has-margin-bottom-15"
+          >
+            Archive
+          </Link>
         </div>
       </div>
     );
   } else {
     return (
-      <div key={state.jobid} className="columns box has-margin-bottom-40">
-        <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
-          {state.startdate}
-        </p>
-        <p className="column is-1 has-margin-right-20">{state.enddate}</p>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Days:</p>
-          <p>{state.numberofdays}</p>
+      <div className="column is-full">
+        <div key={state.jobid} className="columns box has-margin-bottom-20">
+          <div className="column is-2">
+            <p className="has-text-weight-semibold">Start:</p>
+            <p className="has-text-weight-semibold has-text-primary">
+              {state.startdate}
+            </p>
+          </div>
+          <div className="column is-2">
+            <p className="has-text-weight-semibold">End:</p>
+            <p className="has-text-weight-semibold has-text-primary">
+              {state.enddate}
+            </p>
+          </div>
+          <div className="column is-1 has-text-weight-semibold">
+            <p>Days:</p>
+            <p>{state.numberofdays}</p>
+          </div>
+          <div className="column is-1 has-text-weight-semibold">
+            <p>€/Day:</p>
+            <p>{state.priceperday}</p>
+          </div>
+          <div className="column is-1 has-text-weight-semibold">
+            <p>Total €:</p>
+            <p>{state.totalprice}</p>
+          </div>
+          <div class="column field is-2 has-text-weight-semibold ">
+            <p>Paid:</p>
+            <p class="control">
+              <span class="select">
+                <select>
+                  <option selected>no</option>
+                  <option>yes</option>
+                </select>
+              </span>
+            </p>
+          </div>
+          <div className="column is-3">
+            <p className="has-text-weight-semibold">Comments:</p>
+            <p>{state.description}</p>
+          </div>
         </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Daily Price:</p>
-          <p>{state.priceperday}</p>
-        </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Total:</p>
-          <p>{state.totalprice}</p>
-        </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Paid:</p>
-          <p className="has-text-danger">No</p>
-        </div>
-        <div className="column is-1 has-margin-right-20">
-          <p className="has-text-weight-semibold">Comments:</p>
-          <p>{state.description}</p>
-        </div>
-        {/* <div className="column is-one-quarter is-multiline">
-                  <Link
-                    to={`/auth/pet/edit/${pet._id}`}
-                    className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100 buttonwidth"
-                  >
-                    Edit
-                  </Link>
 
-                  <Link
-                    onClick={() =>
-                      axios
-                        .delete(`/api/pets/${pet._id}`)
-                        .then(() => window.location.reload())
-                        .catch(err => console.log(err))
-                    }
-                    to={`/auth/customers/${props.match.params.id}`}
-                    className="button is-danger has-text-weight-semibold has-margin-bottom-10 buttonwidth"
-                  >
-                    Delete
-                  </Link>
-                </div> */}
+        <div className="columns has-margin-bottom-60 has-margin-top-20">
+          <Link
+            to=""
+            className="button is-info has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
+          >
+            Edit
+          </Link>
 
-        {/* <img src={pet.photo} alt="" /> */}
+          <Link
+            to=""
+            className="button is-danger has-text-weight-semibold has-margin-right-30 is-fullwidth has-margin-bottom-10"
+          >
+            Delete
+          </Link>
+
+          <Link
+            to=""
+            className="button is-warning has-text-weight-semibold is-fullwidth has-margin-bottom-15"
+          >
+            Archive
+          </Link>
+        </div>
       </div>
     );
   }
