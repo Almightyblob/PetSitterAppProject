@@ -8,15 +8,17 @@ const EditPet = props => {
   }, [0]);
 
   const [formData, setFormData] = useState({
-    customerid: props.location.state.id,
+    customerid: props.match.params.id,
     type: "",
     name: "",
     comments: ""
   });
   const fetchItems = async () => {
-    const pet = await axios.get(`{/api/pets/${props.location.state.id}`);
+    const pet = await axios.get(`/api/pets/${props.match.params.id}`);
     const items = pet.data;
+    console.log("petdata: ", items);
     setFormData({
+      ...formData,
       type: items.type,
       name: items.name,
       comments: items.comments
@@ -33,8 +35,7 @@ const EditPet = props => {
       customerid,
       type,
       name,
-      comments,
-      customer: customerid
+      comments
     };
     try {
       const config = {
@@ -109,7 +110,7 @@ const EditPet = props => {
                 <input
                   type="submit"
                   className="button is-info"
-                  value="Add Pet"
+                  value="Update"
                 />
               </p>
             </div>

@@ -21,8 +21,7 @@ const AddPet = props => {
       customerid,
       type,
       name,
-      comments,
-      customer: customerid
+      comments
     };
     try {
       const config = {

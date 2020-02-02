@@ -144,8 +144,8 @@ function CustomerDetails(props) {
                   <p>{job.numberofdays}</p>
                 </div>
                 <div className="column is-1 has-margin-right-20">
-                  <p className="has-text-weight-semibold">Price:</p>
-                  <p>{job.priceperday}</p>
+                  <p className="has-text-weight-semibold">Daily Price:</p>
+                  <p>{items.priceperday}</p>
                 </div>
                 <div className="column is-1 has-margin-right-20">
                   <p className="has-text-weight-semibold">Total:</p>
@@ -153,6 +153,7 @@ function CustomerDetails(props) {
                 </div>
                 <div className="column is-1 has-margin-right-20">
                   <p className="has-text-weight-semibold">Paid:</p>
+
                   <p>{job.paid}</p>
                 </div>
                 <div className="column is-1 has-margin-right-20">
