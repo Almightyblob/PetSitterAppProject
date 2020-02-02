@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
-import Alert from "../components/layout/Alert";
 
 const AddPet = props => {
   const [formData, setFormData] = useState({
@@ -97,7 +96,7 @@ const AddPet = props => {
               <p className="control">
                 <input
                   type="submit"
-                  className="button is-link"
+                  className="button is-info"
                   value="Add Pet"
                 />
               </p>
