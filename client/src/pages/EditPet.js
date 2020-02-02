@@ -2,38 +2,36 @@ import React, { useState, useEffect } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
 
-const EditPet = props => {
+const AddPet = props => {
   useEffect(() => {
     fetchItems();
   }, [0]);
 
-  console.log(props.history);
-
   const [formData, setFormData] = useState({
-    customerid: props.match.params.id,
+    customerid: "",
     type: "",
     name: "",
     comments: ""
   });
+
   const fetchItems = async () => {
     const pet = await axios.get(`/api/pets/${props.match.params.id}`);
     const items = pet.data;
-    console.log("something", items);
     setFormData({
-      ...formData,
+      customerid: items.customerid,
       type: items.type,
       name: items.name,
       comments: items.comments
     });
   };
+
   const { type, name, comments, customerid } = formData;
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData.customerid);
   };
   const onSubmit = async e => {
     e.preventDefault();
-    const pet = {
+    const newPet = {
       customerid,
       type,
       name,
@@ -45,18 +43,21 @@ const EditPet = props => {
           "Content-Type": "application/json"
         }
       };
-      const body = JSON.stringify(pet);
-      const res = await axios.post("/api/pets", body, config);
-      console.log(res.data);
+      const body = JSON.stringify(newPet);
+      const res = await axios.put(
+        `/api/pets/${props.match.params.id}`,
+        body,
+        config
+      );
 
-      props.history.push(`/auth/customers/${props.location.state.id}`);
+      props.history.push(`/auth/customers/${formData.customerid}`);
     } catch (err) {}
   };
   return (
     <FormLayout>
       <div className="box columns is-centered">
         <div className="column has-padding-bottom-20">
-          <h1 className="is-size-3">Edit a Pet</h1>
+          <h1 className="is-size-3">Edit Pet</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
@@ -110,7 +111,7 @@ const EditPet = props => {
                 <input
                   type="submit"
                   className="button is-info"
-                  value="Add Pet"
+                  value="Udapte"
                 />
               </p>
             </div>
@@ -121,4 +122,4 @@ const EditPet = props => {
   );
 };
 
-export default EditPet;
+export default AddPet;

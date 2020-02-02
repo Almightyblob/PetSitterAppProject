@@ -28,7 +28,8 @@ function CustomerDetails(props) {
             name={items.name}
             address={items.address}
             phone={items.phone}
-            id={props.match.params.id}
+            priceperday={items.priceperday}
+            id={items._id}
           />
         </div>
       </div>
@@ -50,7 +51,7 @@ function CustomerDetails(props) {
                 type={pet.type}
                 comments={pet.comments}
                 petid={pet._id}
-                customerid={props.match.params.id}
+                customerid={items._id}
               />
             ))}
 
@@ -58,7 +59,7 @@ function CustomerDetails(props) {
             <button
               onClick={() =>
                 props.history.push("/auth/addpet", {
-                  id: props.match.params.id
+                  id: items._id
                 })
               }
               className="button is-primary has-text-weight-semibold has-margin-top-40 is-fullwidth"
@@ -91,15 +92,15 @@ function CustomerDetails(props) {
                 paid={job.paid}
                 archived={job.archived}
                 description={job.description}
-                customerid={props.match.params.id}
+                customerid={items._id}
               />
             ))}
 
           <button
-            onClick={() =>
-              props.history.push(`/auth/addjob/${props.match.params.id}`)
-            }
-            className="button is-warning has-text-weight-semibold has-margin-top-20 is-fullwidth"
+
+            onClick={() => props.history.push(`/auth/addjob/${items._id}`)}
+            className="button is-warning has-text-weight-semibold has-margin-top-40 is-fullwidth"
+
           >
             Add Job
           </button>
@@ -107,7 +108,7 @@ function CustomerDetails(props) {
       </div>
       <div className="columns"></div>
       <div className="column is-8 is-offset-2 is-full-mobile is-paddingless has-padding-left-5-mobile has-padding-right-5-mobile mobileCalendarHeight has-margin-top-60">
-        <Calendar id={props.match.params.id} />
+        <Calendar id={items._id} />
       </div>
     </Fragment>
   ) : (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const JobBox = ({
   jobid,
@@ -25,6 +26,22 @@ const JobBox = ({
     description,
     customerid
   });
+
+  const setArchived = async () => {
+    setState({ ...state, archived: true });
+    let updatedJob = { ...state };
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      const body = JSON.stringify(updatedJob);
+      await axios.put(`/api/jobs/${state.jobid}`, body, config);
+      window.location.reload();
+    } catch (err) {}
+  };
+
   if (archived) {
     return <div></div>;
   }
@@ -52,10 +69,10 @@ const JobBox = ({
             <p>Total:</p>
             <p>{state.totalprice} €</p>
           </div>
-          <div class="column field is-2 has-text-weight-semibold ">
+          <div className="column field is-2 has-text-weight-semibold ">
             <p>Paid:</p>
-            <p class="control">
-              <span class="select">
+            <p className="control">
+              <span className="select">
                 <select>
                   <option>no</option>
                   <option selected>yes</option>
@@ -84,12 +101,12 @@ const JobBox = ({
             Delete
           </Link>
 
-          <Link
-            to=""
+          <div
+            onClick={setArchived}
             className="button is-warning has-text-weight-semibold is-fullwidth has-margin-bottom-15"
           >
             Archive
-          </Link>
+          </div>
         </div>
       </div>
     );
@@ -117,10 +134,10 @@ const JobBox = ({
             <p>Total:</p>
             <p>{state.totalprice} €</p>
           </div>
-          <div class="column field is-2 has-text-weight-semibold ">
+          <div className="column field is-2 has-text-weight-semibold ">
             <p>Paid:</p>
-            <p class="control">
-              <span class="select">
+            <p className="control">
+              <span className="select">
                 <select>
                   <option selected>no</option>
                   <option>yes</option>
@@ -149,12 +166,12 @@ const JobBox = ({
             Delete
           </Link>
 
-          <Link
-            to=""
+          <div
+            onClick={setArchived}
             className="button is-warning has-text-weight-semibold is-fullwidth has-margin-bottom-15"
           >
             Archive
-          </Link>
+          </div>
         </div>
       </div>
     );

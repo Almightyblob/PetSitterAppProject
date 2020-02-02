@@ -9,13 +9,7 @@ import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
 
 const Home = ({ auth: { isAuthenticated, loading } }, props) => {
-  const Private = (
-    <Fragment history={props.history}>
-      <CalendarLayout history={props.history}>
-        <Calendar history={props.history} />
-      </CalendarLayout>
-    </Fragment>
-  );
+  const Private = <Calendar history={props.history} />;
   const Public = (
     <Fragment>
       <HomePageLayout>
@@ -26,7 +20,11 @@ const Home = ({ auth: { isAuthenticated, loading } }, props) => {
 
   return (
     <div>
-      {!loading && <Fragment>{isAuthenticated ? Private : Public}</Fragment>}
+      {!loading && (
+        <Fragment history={props.history}>
+          {isAuthenticated ? Private : Public}
+        </Fragment>
+      )}
     </div>
   );
 };
