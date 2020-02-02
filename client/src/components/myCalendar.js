@@ -29,7 +29,8 @@ function MyCalendar(props) {
       console.log(customer.data.jobs);
       jobs = customer.data.jobs;
     } else {
-      jobs = await axios.get(`/api/jobs/`);
+      let response = await axios.get(`/api/jobs/`);
+      jobs = response.data;
     }
 
     let newArray = [...events];
