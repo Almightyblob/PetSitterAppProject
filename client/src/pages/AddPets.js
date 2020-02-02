@@ -41,7 +41,7 @@ const AddPet = props => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column is-4 has-margin-top-15">
+        <div className="column is-4 has-margin-top-15 is-hidden-mobile">
           <img src="/images/cat3.png" alt="cat" />
         </div>
         <div className="column is-8">
@@ -108,6 +108,9 @@ const AddPet = props => {
               </form>
             </div>
           </div>
+        </div>
+        <div className="column is-4 has-margin-top-15 is-hidden-desktop">
+          <img src="/images/cat3.png" alt="cat" />
         </div>
       </div>
     </FormLayout>

@@ -112,7 +112,7 @@ const AddJob = props => {
   return (
     <FormLayout>
       {/* <p>Number of days: {formData.numberOfDays}</p> */}
-      <div className="box columns is-centered is-multiline">
+      <div className="box columns is-multiline">
         <DatePicker
           className="column is-full input is-info"
           selected={formData.startdate}
@@ -121,7 +121,7 @@ const AddJob = props => {
           todayButton="Today"
         />
         <DatePicker
-          className="column is-full has-margin-left-20 input is-info"
+          className="column is-full has-margin-left-20-desktop has-margin-top-10-mobile input is-info"
           selected={formData.enddate}
           onChange={handleChangeEnd}
           minDate={formData.startdate}

@@ -97,10 +97,8 @@ function CustomerDetails(props) {
             ))}
 
           <button
-
             onClick={() => props.history.push(`/auth/addjob/${items._id}`)}
-            className="button is-warning has-text-weight-semibold has-margin-top-40 is-fullwidth"
-
+            className="button is-warning has-text-weight-semibold has-margin-top-40 has-margin-top-20-mobile is-fullwidth"
           >
             Add Job
           </button>
