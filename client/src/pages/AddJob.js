@@ -53,7 +53,7 @@ const AddJob = props => {
   const calculateDays = () => {
     var newStartDate = moment(formData.startdate).format("YYYY-MM-DD");
     var newEndDate = moment(formData.enddate).format("YYYY-MM-DD");
-    var totaldays = moment(newEndDate).diff(moment(newStartDate), "days");
+    var totaldays = moment(newEndDate).diff(moment(newStartDate), "days") + 1;
     return totaldays;
   };
 
