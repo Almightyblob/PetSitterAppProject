@@ -20,26 +20,33 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </a>
           <div>
             <Link
+              to="/auth/overview"
+              className="button is-warning has-text-weight-bold has-margin-right-20 has-margin-left-5 mobile is-marginless-mobile is-size-7-mobile has-margin-top-5"
+            >
+              Overview
+            </Link>
+
+            <Link
               to="/auth/customers"
-              className="button is-primary has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5 has-margin-left-30-mobile"
+              className="button is-primary has-text-weight-bold is-marginless-mobile has-margin-right-20 is-size-7-mobile has-margin-top-5"
             >
               Customers
             </Link>
 
             <Link
               to="/auth/addcustomer"
-              className="button is-info has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5"
+              className="button is-info has-text-weight-bold has-margin-right-20 is-marginless-mobile is-size-7-mobile has-margin-top-5"
             >
-              Add a customer
+              <i className="fa fa-plus has-margin-right-5"></i> Customer
             </Link>
 
             <a
-              className="button is-link has-text-weight-bold has-margin-right-40 has-margin-right-30-mobile is-size-7-mobile has-margin-top-5"
+              className="button is-link has-text-weight-bold has-margin-right-40 has-margin-right-5-mobile is-marginless-mobile is-size-7-mobile has-margin-top-5"
               onClick={logout}
               href="/"
             >
               <i className="fas fa-sign-out-alt"></i>
-              <span className="has-text-weight-bold is-size-7-mobile">
+              <span className="has-text-weight-bold is-hidden-mobile">
                 Logout
               </span>
             </a>

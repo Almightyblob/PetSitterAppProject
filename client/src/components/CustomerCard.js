@@ -16,8 +16,8 @@ const CustomerCard = ({ name, address, phone, priceperday, id }) => {
             <p className="column is-one-fifth has-margin-right-20">
               <i className="fas fa-mobile-alt"></i> {phone}
             </p>
-            <p className="column is-one-fifth has-margin-right-20">
-              <i className="fas fa-euro-sign"></i> {priceperday} EUR
+            <p className="column is-one-fifth has-margin-right-20 has-text-weight-bold">
+              {priceperday} <i className="fas fa-euro-sign"></i>
             </p>
           </div>
         </Link>
