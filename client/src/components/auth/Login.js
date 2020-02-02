@@ -26,7 +26,7 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column">
+        <div className="column is-8">
           <div className="has-padding-bottom-20">
             <Alert />
           </div>
@@ -75,6 +75,9 @@ const Login = ({ login, isAuthenticated }) => {
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
           </form>
+        </div>
+        <div className="column is-4 has-margin-top-15">
+          <img src="/images/cat10.png" alt="cat" />
         </div>
       </div>
     </FormLayout>

@@ -73,7 +73,7 @@ function CustomerDetails(props) {
         <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile is-paddingless">
           <div className="columns">
             <div className="column">
-              <h3 className="is-size-3 has-text-weight-semibold has-text-warning has-text-centered-mobile has-margin-bottom-20 has-margin-top-40">
+              <h3 className="is-size-3 has-text-weight-semibold has-text-warning has-text-centered-mobile has-margin-bottom-5 has-margin-top-40">
                 JOB
               </h3>
             </div>
@@ -97,8 +97,10 @@ function CustomerDetails(props) {
             ))}
 
           <button
+
             onClick={() => props.history.push(`/auth/addjob/${items._id}`)}
             className="button is-warning has-text-weight-semibold has-margin-top-40 is-fullwidth"
+
           >
             Add Job
           </button>

@@ -47,7 +47,7 @@ const JobBox = ({
   }
   if (paid) {
     return (
-      <div className="columns is-full">
+      <div className="column is-full">
         <div key={state.jobid} className="columns box has-margin-bottom-20">
           <div className="column is-2">
             <p className="has-text-weight-semibold">Start:</p>
@@ -66,12 +66,8 @@ const JobBox = ({
             <p>{state.numberofdays}</p>
           </div>
           <div className="column is-1 has-text-weight-semibold">
-            <p>€/Day:</p>
-            <p>{state.priceperday}</p>
-          </div>
-          <div className="column is-1 has-text-weight-semibold">
-            <p>Total €:</p>
-            <p>{state.totalprice}</p>
+            <p>Total:</p>
+            <p>{state.totalprice} €</p>
           </div>
           <div className="column field is-2 has-text-weight-semibold ">
             <p>Paid:</p>
@@ -84,7 +80,7 @@ const JobBox = ({
               </span>
             </p>
           </div>
-          <div className="column is-3">
+          <div className="column is-3 has-margin-left-20">
             <p className="has-text-weight-semibold">Comments:</p>
             <p>{state.description}</p>
           </div>
@@ -135,12 +131,8 @@ const JobBox = ({
             <p>{state.numberofdays}</p>
           </div>
           <div className="column is-1 has-text-weight-semibold">
-            <p>€/Day:</p>
-            <p>{state.priceperday}</p>
-          </div>
-          <div className="column is-1 has-text-weight-semibold">
-            <p>Total €:</p>
-            <p>{state.totalprice}</p>
+            <p>Total:</p>
+            <p>{state.totalprice} €</p>
           </div>
           <div className="column field is-2 has-text-weight-semibold ">
             <p>Paid:</p>
@@ -153,7 +145,7 @@ const JobBox = ({
               </span>
             </p>
           </div>
-          <div className="column is-3">
+          <div className="column is-3 has-margin-left-20">
             <p className="has-text-weight-semibold">Comments:</p>
             <p>{state.description}</p>
           </div>

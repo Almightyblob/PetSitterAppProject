@@ -39,7 +39,7 @@ const AddCustomer = props => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column">
+        <div className="column is-8">
           <h1 className="is-size-3">Add a Customer</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
@@ -114,6 +114,9 @@ const AddCustomer = props => {
               </p>
             </div>
           </form>
+        </div>
+        <div className="column is-4">
+          <img src="/images/owner.png" width="90%" alt="" />
         </div>
       </div>
     </FormLayout>
