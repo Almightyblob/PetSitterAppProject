@@ -11,7 +11,6 @@ import { logout } from "../actions/auth";
 const Home = ({ auth: { isAuthenticated, loading } }) => {
   const Private = (
     <Fragment>
-      <Navbar />
       <CalendarLayout>
         <Calendar />
       </CalendarLayout>
@@ -19,7 +18,6 @@ const Home = ({ auth: { isAuthenticated, loading } }) => {
   );
   const Public = (
     <Fragment>
-      <Navbar />
       <HomePageLayout>
         <img src="../images/cat13.png" alt="cat"></img>
       </HomePageLayout>
