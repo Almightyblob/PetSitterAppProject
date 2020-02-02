@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
 
-const AddCustomer = props => {
+const EditCustomer = props => {
   useEffect(() => {
     fetchItems();
   }, [0]);
@@ -45,7 +45,7 @@ const AddCustomer = props => {
       };
       const body = JSON.stringify(customer);
       const res = await axios.put(
-        `/api/customers//edit/${props.match.params.id}`,
+        `/api/customers/edit/${props.match.params.id}`,
         body,
         config
       );
@@ -139,4 +139,4 @@ const AddCustomer = props => {
   );
 };
 
-export default AddCustomer;
+export default EditCustomer;

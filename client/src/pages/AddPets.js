@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
-import Alert from "../components/layout/Alert";
 
 const AddPet = props => {
   const [formData, setFormData] = useState({

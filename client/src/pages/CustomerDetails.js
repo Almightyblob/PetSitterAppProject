@@ -42,7 +42,7 @@ function CustomerDetails(props) {
               to={`/auth/customers/edit/${props.match.params.id}`}
               className="button is-info has-text-weight-semibold is-overlay has-margin-bottom-15 has-margin-right-30 is-fullwidth"
             >
-              Edit a customer
+              Edit customer
             </Link>
 
             <Link
@@ -55,7 +55,7 @@ function CustomerDetails(props) {
               to="/auth/customers"
               className="button is-danger has-text-weight-semibold has-margin-bottom-10 is-fullwidth"
             >
-              Delete a customer
+              Delete customer
             </Link>
           </div>
         </div>
@@ -84,7 +84,7 @@ function CustomerDetails(props) {
                 </div>
                 <div className="column is-one-quarter is-multiline">
                   <Link
-                    to=""
+                    to={`/auth/pet/edit/${pet._id}`}
                     className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100 buttonwidth"
                   >
                     Edit
@@ -117,23 +117,86 @@ function CustomerDetails(props) {
               }
               className="button is-primary has-text-weight-semibold has-margin-top-40 is-fullwidth"
             >
-              Add a pet
-            </button>
-          </div>
-          <div className="columns">
-            <button
-              onClick={() =>
-                props.history.push(`/auth/addjob/${props.match.params.id}`)
-              }
-              className="button is-warning has-text-weight-semibold has-margin-top-40 is-fullwidth"
-            >
-              Add a Job
+              Add pet
             </button>
           </div>
         </div>
       </div>
+      <div className="columns">
+        <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile is-paddingless">
+          <div className="columns">
+            <div className="column">
+              <h3 className="is-size-3 has-text-weight-semibold has-text-info has-text-centered-mobile has-margin-bottom-20 has-margin-top-40">
+                JOB
+              </h3>
+            </div>
+          </div>
+
+          {items.jobs &&
+            items.jobs.map(job => (
+              <div key={job._id} className="columns box has-margin-bottom-40">
+                <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
+                  {job.startdate}
+                </p>
+                <p className="column is-1 has-margin-right-20">{job.enddate}</p>
+                <div className="column is-1 has-margin-right-20">
+                  <p className="has-text-weight-semibold">Days:</p>
+                  <p>{job.numberofdays}</p>
+                </div>
+                <div className="column is-1 has-margin-right-20">
+                  <p className="has-text-weight-semibold">Price:</p>
+                  <p>{job.priceperday}</p>
+                </div>
+                <div className="column is-1 has-margin-right-20">
+                  <p className="has-text-weight-semibold">Total:</p>
+                  <p>{job.totalprice}</p>
+                </div>
+                <div className="column is-1 has-margin-right-20">
+                  <p className="has-text-weight-semibold">Paid:</p>
+                  <p>{job.paid}</p>
+                </div>
+                <div className="column is-1 has-margin-right-20">
+                  <p className="has-text-weight-semibold">Comments:</p>
+                  <p>{job.description}</p>
+                </div>
+                {/* <div className="column is-one-quarter is-multiline">
+                  <Link
+                    to={`/auth/pet/edit/${pet._id}`}
+                    className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100 buttonwidth"
+                  >
+                    Edit
+                  </Link>
+
+                  <Link
+                    onClick={() =>
+                      axios
+                        .delete(`/api/pets/${pet._id}`)
+                        .then(() => window.location.reload())
+                        .catch(err => console.log(err))
+                    }
+                    to={`/auth/customers/${props.match.params.id}`}
+                    className="button is-danger has-text-weight-semibold has-margin-bottom-10 buttonwidth"
+                  >
+                    Delete
+                  </Link>
+                </div> */}
+
+                {/* <img src={pet.photo} alt="" /> */}
+              </div>
+            ))}
+
+          <button
+            onClick={() =>
+              props.history.push(`/auth/addjob/${props.match.params.id}`)
+            }
+            className="button is-warning has-text-weight-semibold has-margin-top-40 is-fullwidth"
+          >
+            Add Job
+          </button>
+        </div>
+      </div>
       <div className="columns"></div>
-      <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile is-paddingless mobileCalendarHeight">
+      <div className="column is-8 is-offset-2 is-full-mobile is-paddingless has-padding-left-5-mobile has-padding-right-5-mobile mobileCalendarHeight has-margin-top-60">
         <Calendar />
       </div>
     </Fragment>
