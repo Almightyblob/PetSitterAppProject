@@ -164,7 +164,7 @@ const JobBox = ({
               </span>
             </p>
           </div>
-          <div className="column is-3 has-margin-left-20">
+          <div className="column is-3 has-margin-left-20-desktop">
             <p className="has-text-weight-semibold">Comments:</p>
             <p>{state.description}</p>
           </div>
