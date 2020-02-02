@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../App.scss";
 
 const PetBox = ({ name, type, comments, petid, customerid }) => {
   return (
@@ -16,7 +17,7 @@ const PetBox = ({ name, type, comments, petid, customerid }) => {
       <div className="column is-one-quarter is-multiline">
         <Link
           to={`/auth/pet/edit/${petid}`}
-          className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100 buttonwidth"
+          className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100-desktop buttonwidth "
         >
           Edit
         </Link>
