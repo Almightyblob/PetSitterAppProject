@@ -4,63 +4,81 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import "./Burger.js";
+import "../../App.scss";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
-    <div className="columns has-padding-bottom-50 has-padding-top-15">
-      <a
-        className="column has-margin-left-30 has-margin-left-10-mobile"
-        href="/"
-      >
-        <img src="../images/logoPetSitterApp.png" alt="logo" width="150px" />
-      </a>
-      <Link
-        to="/auth/customers"
-        className="button is-primary has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5"
-      >
-        Customers
-      </Link>
+    <div className="columns">
+      <div className="column is-full-mobile">
+        <div className="columns has-text-centered-mobile has-padding-bottom-50 has-padding-top-15">
+          <a className="column has-margin-left-30" href="/">
+            <img
+              src="../images/logoPetSitterApp.png"
+              alt="logo"
+              width="150px"
+            />
+          </a>
+          <div>
+            <Link
+              to="/auth/customers"
+              className="button is-primary has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5 has-margin-left-30-mobile"
+            >
+              Customers
+            </Link>
 
-      <Link
-        to="/auth/addcustomer"
-        className="button is-info has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5"
-      >
-        Add a customer
-      </Link>
+            <Link
+              to="/auth/addcustomer"
+              className="button is-info has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5"
+            >
+              Add a customer
+            </Link>
 
-      <div className="has-margin-top-5 has-margin-right-30">
-        <a
-          className="button is-info is-size-7-mobile"
-          onClick={logout}
-          href="/"
-        >
-          <i className="fas fa-sign-out-alt"></i>
-          <span className="has-text-weight-bold is-size-7-mobile">Logout</span>
-        </a>
+            <a
+              className="button is-link has-text-weight-bold has-margin-right-40 has-margin-right-30-mobile is-size-7-mobile has-margin-top-5"
+              onClick={logout}
+              href="/"
+            >
+              <i className="fas fa-sign-out-alt"></i>
+              <span className="has-text-weight-bold is-size-7-mobile">
+                Logout
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
   const guestLinks = (
-    <div className="columns has-padding-bottom-50 has-padding-top-15">
-      <a
-        className="column has-margin-left-30 has-margin-left-10-mobile"
-        href="/"
-      >
-        <img src="../images/logoPetSitterApp.png" alt="logo" width="150px" />
-      </a>
-      <Link
-        to="/signup"
-        className="button is-primary has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5"
-      >
-        Sign up
-      </Link>
+    <div className="columns">
+      <div className="column is-full-mobile">
+        <div className="columns has-text-centered-mobile has-padding-bottom-50 has-padding-top-15">
+          <a
+            className="column has-margin-left-30 is-marginless-mobile"
+            href="/"
+          >
+            <img
+              src="../images/logoPetSitterApp.png"
+              alt="logo"
+              width="150px"
+            />
+          </a>
+          <div>
+            <Link
+              to="/signup"
+              className="button is-primary has-text-weight-bold has-margin-right-20 is-size-7-mobile has-margin-top-5 has-margin-left-60-mobile"
+            >
+              Sign up
+            </Link>
 
-      <Link
-        to="/login"
-        className="button is-info has-text-weight-bold has-margin-right-30 is-size-7-mobile has-margin-top-5"
-      >
-        Log in
-      </Link>
+            <Link
+              to="/login"
+              className="button is-info has-text-weight-bold has-margin-right-40 has-margin-right-30-mobile is-size-7-mobile has-margin-top-5"
+            >
+              Log in
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 

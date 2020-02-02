@@ -8,6 +8,7 @@ const JobBox = ({
   enddate,
   numberofdays,
   totalprice,
+  priceperday,
   paid,
   archived,
   description,
@@ -19,6 +20,7 @@ const JobBox = ({
     enddate,
     numberofdays,
     totalprice,
+    priceperday,
     paid,
     archived,
     description,
@@ -29,7 +31,7 @@ const JobBox = ({
   }
   if (paid) {
     return (
-      <div key={state.jobid} className="columns box has-margin-bottom-40">
+      <div className="columns box has-margin-bottom-40">
         <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
           {state.startdate}
         </p>
