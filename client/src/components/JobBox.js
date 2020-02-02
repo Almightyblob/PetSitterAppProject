@@ -24,34 +24,66 @@ const JobBox = ({
     description,
     customerid
   });
-
-  return (
-    <div key={state.jobid} className="columns box has-margin-bottom-40">
-      <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
-        {state.startdate}
-      </p>
-      <p className="column is-1 has-margin-right-20">{state.enddate}</p>
-      <div className="column is-1 has-margin-right-20">
-        <p className="has-text-weight-semibold">Days:</p>
-        <p>{state.numberofdays}</p>
+  if (archived) {
+    return <div></div>;
+  }
+  if (paid) {
+    return (
+      <div key={state.jobid} className="columns box has-margin-bottom-40">
+        <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
+          {state.startdate}
+        </p>
+        <p className="column is-1 has-margin-right-20">{state.enddate}</p>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Days:</p>
+          <p>{state.numberofdays}</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Daily Price:</p>
+          <p>{state.priceperday}</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Total:</p>
+          <p>{state.totalprice}</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Paid:</p>
+          <p className="has-text-primary">Yes</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Comments:</p>
+          <p>{state.description}</p>
+        </div>
       </div>
-      <div className="column is-1 has-margin-right-20">
-        <p className="has-text-weight-semibold">Daily Price:</p>
-        <p>{state.priceperday}</p>
-      </div>
-      <div className="column is-1 has-margin-right-20">
-        <p className="has-text-weight-semibold">Total:</p>
-        <p>{state.totalprice}</p>
-      </div>
-      <div className="column is-1 has-margin-right-20">
-        <p className="has-text-weight-semibold">Paid:</p>
-        <p>{state.paid}</p>
-      </div>
-      <div className="column is-1 has-margin-right-20">
-        <p className="has-text-weight-semibold">Comments:</p>
-        <p>{state.description}</p>
-      </div>
-      {/* <div className="column is-one-quarter is-multiline">
+    );
+  } else {
+    return (
+      <div key={state.jobid} className="columns box has-margin-bottom-40">
+        <p className="column is-1 has-text-weight-semibold has-text-primary has-margin-right-20">
+          {state.startdate}
+        </p>
+        <p className="column is-1 has-margin-right-20">{state.enddate}</p>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Days:</p>
+          <p>{state.numberofdays}</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Daily Price:</p>
+          <p>{state.priceperday}</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Total:</p>
+          <p>{state.totalprice}</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Paid:</p>
+          <p className="has-text-danger">No</p>
+        </div>
+        <div className="column is-1 has-margin-right-20">
+          <p className="has-text-weight-semibold">Comments:</p>
+          <p>{state.description}</p>
+        </div>
+        {/* <div className="column is-one-quarter is-multiline">
                   <Link
                     to={`/auth/pet/edit/${pet._id}`}
                     className="button is-info has-text-weight-semibold has-margin-bottom-15 has-margin-right-100 buttonwidth"
@@ -73,9 +105,10 @@ const JobBox = ({
                   </Link>
                 </div> */}
 
-      {/* <img src={pet.photo} alt="" /> */}
-    </div>
-  );
+        {/* <img src={pet.photo} alt="" /> */}
+      </div>
+    );
+  }
 };
 
 export default JobBox;
