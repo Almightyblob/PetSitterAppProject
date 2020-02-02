@@ -7,6 +7,7 @@ const JobBox = ({
   enddate,
   numberofdays,
   totalprice,
+  priceperday,
   paid,
   archived,
   description,
@@ -18,6 +19,7 @@ const JobBox = ({
     enddate,
     numberofdays,
     totalprice,
+    priceperday,
     paid,
     archived,
     description,
@@ -69,6 +71,7 @@ const JobBox = ({
             <p className="has-text-weight-semibold">Comments:</p>
             <p>{state.description}</p>
           </div>
+
         </div>
 
         <div className="columns has-margin-bottom-60 has-margin-top-20">

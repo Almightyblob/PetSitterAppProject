@@ -18,6 +18,35 @@ router.get("/", async (req, res) => {
   }
 });
 
+//@route        GET api/jobs/:id
+//@description  single job
+//@access       PUBLIC
+
+router.get("/:id", async (req, res) => {
+  try {
+    let job = await Job.findById(req.params.id).populate("customer");
+    res.json(job.data);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//@route        GET api/jobs/fromcustomer/:id
+//@description  single job
+//@access       PUBLIC
+
+router.get("/fromcustomer/:id", async (req, res) => {
+  try {
+    let jobs = await Job.find({ customer: req.params.id }).populate("customer");
+    res.json(jobs);
+    console.log(jobs);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 //@route        POST api/jobs/:id
 //@description  create job
 //@access       PUBLIC
