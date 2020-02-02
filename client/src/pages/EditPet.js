@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormLayout from "../components/layout/Form";
 import axios from "axios";
-import Alert from "../components/layout/Alert";
 
-const AddPet = props => {
+const EditPet = props => {
   useEffect(() => {
     fetchItems();
   }, [0]);
 
   const [formData, setFormData] = useState({
-    customerid: props.location.state.id,
+    customerid: props.match.params.id,
     type: "",
     name: "",
     comments: ""
   });
   const fetchItems = async () => {
-    const customer = await axios.get(`/api/customers/${props.match.params.id}`);
-    const items = customer.data;
+    const pet = await axios.get(`/api/pets/${props.match.params.id}`);
+    const items = pet.data;
+    console.log("petdata: ", items);
     setFormData({
+      ...formData,
+      type: items.type,
       name: items.name,
-      address: items.address,
-      phone: items.phone,
-      priceperday: items.priceperday
+      comments: items.comments
     });
   };
   const { type, name, comments, customerid } = formData;
@@ -31,7 +31,7 @@ const AddPet = props => {
   };
   const onSubmit = async e => {
     e.preventDefault();
-    const newPet = {
+    const pet = {
       customerid,
       type,
       name,
@@ -43,7 +43,7 @@ const AddPet = props => {
           "Content-Type": "application/json"
         }
       };
-      const body = JSON.stringify(newPet);
+      const body = JSON.stringify(pet);
       const res = await axios.post("/api/pets", body, config);
       console.log(res.data);
 
@@ -55,11 +55,8 @@ const AddPet = props => {
   return (
     <FormLayout>
       <div className="box columns is-centered">
-        <div className="column">
-          <div className="has-padding-bottom-20">
-            <Alert />
-          </div>
-          <h1 className="is-size-3">Add a Pet</h1>
+        <div className="column has-padding-bottom-20">
+          <h1 className="is-size-3">Edit a Pet</h1>
           <form onSubmit={e => onSubmit(e)}>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
@@ -112,8 +109,8 @@ const AddPet = props => {
               <p className="control">
                 <input
                   type="submit"
-                  className="button is-link"
-                  value="Add Pet"
+                  className="button is-info"
+                  value="Update"
                 />
               </p>
             </div>
@@ -124,4 +121,4 @@ const AddPet = props => {
   );
 };
 
-export default AddPet;
+export default EditPet;

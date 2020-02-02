@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import axios from "axios";
@@ -73,14 +73,14 @@ function MyCalendar(props) {
             style={{ height: "80vh" }}
             eventPropGetter={event => {
               let newStyle = {
-                backgroundColor: "#0e90f4",
+                backgroundColor: "#2692D9",
                 color: "white",
                 borderRadius: "0px",
                 border: "none"
               };
 
               if (event.paid) {
-                newStyle.backgroundColor = "#00d1b2";
+                newStyle.backgroundColor = "#02C4A7";
               }
 
               return {

@@ -21,6 +21,10 @@ const JobSchema = new mongoose.Schema({
   },
   description: {
     type: String
+  },
+  archived: {
+    type: Boolean,
+    default: false
   }
 });
 module.exports = Job = mongoose.model("jobs", JobSchema);

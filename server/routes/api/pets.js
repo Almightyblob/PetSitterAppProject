@@ -4,14 +4,14 @@ const Customer = require("../../models/Customer");
 const Pet = require("../../models/Pet");
 const mongoose = require("mongoose");
 
-//@route        GET api/customers/:id
+//@route        GET api/pets/:id
 //@description  retrieve customer list
 //@access       PUBLIC
 
 router.get("/:id", async (req, res) => {
   try {
     let pet = await Pet.findById(req.params.id);
-    res.json(pet.data);
+    res.json(pet);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
