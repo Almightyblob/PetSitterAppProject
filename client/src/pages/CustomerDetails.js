@@ -47,7 +47,7 @@ function CustomerDetails(props) {
                 name={pet.name}
                 type={pet.type}
                 comments={pet.comments}
-                petid={pet.id}
+                petid={pet._id}
                 customerid={props.match.params.id}
               />
             ))}
@@ -79,7 +79,7 @@ function CustomerDetails(props) {
           {items.jobs &&
             items.jobs.map(job => (
               <JobBox
-                jobid={job.id}
+                jobid={job._id}
                 startdate={job.startdate}
                 enddate={job.enddate}
                 numberofdays={job.numberofdays}
