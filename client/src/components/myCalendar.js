@@ -21,9 +21,17 @@ function MyCalendar(props) {
   useEffect(() => {
     fetchItems();
   }, [0]);
+
   const fetchItems = async () => {
-    const items = await axios.get("/api/jobs");
-    const jobs = items.data;
+    var jobs = "";
+    if (props.id) {
+      let customer = await axios.get(`/api/customers/${props.id}`);
+      console.log(customer.data.jobs);
+      jobs = customer.data.jobs;
+    } else {
+      jobs = await axios.get(`/api/jobs/`);
+    }
+
     let newArray = [...events];
 
     if (Object.keys(jobs).length === 0) {
