@@ -6,6 +6,7 @@ import Login from "../src/components/auth/Login";
 import AddCustomer from "./pages/AddCustomer";
 import AddPets from "./pages/AddPets";
 import EditPet from "./pages/EditPet";
+import Overview from "./pages/Overview";
 
 //Redux
 import { Provider } from "react-redux";
@@ -38,7 +39,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
-
+            <PrivateRoute exact path="/auth/overview" component={Overview} />
             <PrivateRoute
               exact
               path="/auth/addcustomer"

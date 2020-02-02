@@ -9,7 +9,13 @@ import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
 
 const Home = ({ auth: { isAuthenticated, loading } }, props) => {
-  const Private = <Calendar history={props.history} />;
+  const Private = (
+    <Fragment>
+      <CalendarLayout>
+        <Calendar />
+      </CalendarLayout>
+    </Fragment>
+  );
   const Public = (
     <Fragment>
       <HomePageLayout>
