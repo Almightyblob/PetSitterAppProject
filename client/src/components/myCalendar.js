@@ -44,7 +44,7 @@ function MyCalendar(props) {
           newArray.push({
             start: new Date(moment(job.startdate)),
             end: new Date(moment(job.enddate)),
-            title: `Customer not in DB - ${job.description}`,
+            title: "Customer not in DB",
             allDay: true,
             paid: job.paid,
             customer: ""
@@ -53,7 +53,7 @@ function MyCalendar(props) {
           newArray.push({
             start: new Date(moment(job.startdate)),
             end: new Date(moment(job.enddate)),
-            title: `${job.customer.name} - ${job.description}`,
+            title: `${job.customer.name}`,
             allDay: true,
             paid: job.paid,
             customer: job.customer
