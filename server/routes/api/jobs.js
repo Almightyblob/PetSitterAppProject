@@ -40,7 +40,6 @@ router.get("/fromcustomer/:id", async (req, res) => {
   try {
     let jobs = await Job.find({ customer: req.params.id }).populate("customer");
     res.json(jobs);
-    console.log(jobs);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
@@ -58,6 +57,7 @@ router.post("/:id", async (req, res) => {
     numberofdays,
     totalprice,
     paid,
+    archived,
     description,
     customer
   } = req.body;
@@ -69,15 +69,52 @@ router.post("/:id", async (req, res) => {
       numberofdays,
       totalprice,
       paid,
+      archived,
       description,
       customer
     });
     await job.save();
-    console.log(job);
     await Customer.findByIdAndUpdate(req.params.id, {
       $push: { jobs: mongoose.Types.ObjectId(job.id) }
     });
     res.status(200).send("Job created");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//@route        PUT api/jobs/:id
+//@description  update a pet
+//@access       PUBLIC
+
+router.put("/:id", async (req, res) => {
+  const {
+    startdate,
+    enddate,
+    numberofdays,
+    totalprice,
+    paid,
+    archived,
+    description,
+    customer
+  } = req.body;
+  try {
+    await Job.findByIdAndUpdate(
+      req.params.id,
+      {
+        startdate,
+        enddate,
+        numberofdays,
+        totalprice,
+        paid,
+        archived,
+        description,
+        customer
+      },
+      { useFindAndModify: false }
+    );
+    res.status(200).send("Job updated");
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server error");
@@ -91,7 +128,6 @@ router.post("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     let job = await Job.findById(req.params.id);
-    console.log(job);
     await Customer.findByIdAndUpdate(
       job.customer,
       { $pull: { jobs: { $in: req.params.id } } },

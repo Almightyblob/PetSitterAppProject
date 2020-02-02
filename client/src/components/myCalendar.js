@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
+import { withRouter } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
@@ -17,7 +18,7 @@ function MyCalendar(props) {
       paid: ""
     }
   ]);
-
+  console.log("history ", props.history);
   useEffect(() => {
     fetchItems();
   }, []);
@@ -104,4 +105,4 @@ function MyCalendar(props) {
   }
 }
 
-export default MyCalendar;
+export default withRouter(MyCalendar);
