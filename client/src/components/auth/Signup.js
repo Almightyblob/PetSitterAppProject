@@ -124,6 +124,10 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
           </form>
         </div>
       </div>
+
+      <div className="has-margin-bottom-20">
+        <img src="/images/ekg-dog.png" alt="dog" />
+      </div>
     </FormLayout>
   );
 };
