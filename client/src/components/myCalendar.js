@@ -20,14 +20,15 @@ function MyCalendar(props) {
 
   useEffect(() => {
     fetchItems();
-  }, [0]);
+  }, []);
 
   const fetchItems = async () => {
     var jobs = "";
     if (props.id) {
-      let customer = await axios.get(`/api/customers/${props.id}`);
-      console.log(customer.data.jobs);
-      jobs = customer.data.jobs;
+      console.log("props id is: ", props.id);
+      let response = await axios.get(`/api/jobs/fromcustomer/${props.id}`);
+      jobs = response.data;
+      console.log(response);
     } else {
       let response = await axios.get(`/api/jobs/`);
       jobs = response.data;
@@ -60,12 +61,11 @@ function MyCalendar(props) {
         }
       });
     }
-
-    console.log(newArray);
     setEvents(newArray);
   };
 
   const handleSelectEvent = event => {
+    console.log(props.history);
     props.history.push(`/auth/customers/${event.customer._id}`);
   };
 

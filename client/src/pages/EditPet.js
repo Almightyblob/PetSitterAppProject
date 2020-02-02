@@ -7,6 +7,8 @@ const EditPet = props => {
     fetchItems();
   }, [0]);
 
+  console.log(props.history);
+
   const [formData, setFormData] = useState({
     customerid: props.match.params.id,
     type: "",
@@ -16,7 +18,7 @@ const EditPet = props => {
   const fetchItems = async () => {
     const pet = await axios.get(`/api/pets/${props.match.params.id}`);
     const items = pet.data;
-    console.log("petdata: ", items);
+    console.log("something", items);
     setFormData({
       ...formData,
       type: items.type,
@@ -48,9 +50,7 @@ const EditPet = props => {
       console.log(res.data);
 
       props.history.push(`/auth/customers/${props.location.state.id}`);
-    } catch (err) {
-      console.log(err.response.data);
-    }
+    } catch (err) {}
   };
   return (
     <FormLayout>
@@ -110,7 +110,7 @@ const EditPet = props => {
                 <input
                   type="submit"
                   className="button is-info"
-                  value="Update"
+                  value="Add Pet"
                 />
               </p>
             </div>

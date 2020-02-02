@@ -5,11 +5,11 @@ import Calendar from "../components/myCalendar";
 import CustomerBox from "../components/CustomerBox";
 import PetBox from "../components/PetBox";
 import JobBox from "../components/JobBox";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 function CustomerDetails(props) {
   useEffect(() => {
     fetchItems();
-  }, [0]);
+  }, []);
   const [items, setItems] = useState(null);
   const fetchItems = async () => {
     const customer = await axios.get(`/api/customers/${props.match.params.id}`);
@@ -44,6 +44,8 @@ function CustomerDetails(props) {
           {items.pets &&
             items.pets.map(pet => (
               <PetBox
+                history={props.history}
+                key={pet._id}
                 name={pet.name}
                 type={pet.type}
                 comments={pet.comments}
@@ -70,7 +72,7 @@ function CustomerDetails(props) {
         <div className="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile is-paddingless">
           <div className="columns">
             <div className="column">
-              <h3 className="is-size-3 has-text-weight-semibold has-text-info has-text-centered-mobile has-margin-bottom-20 has-margin-top-40">
+              <h3 className="is-size-3 has-text-weight-semibold has-text-warning has-text-centered-mobile has-margin-bottom-20 has-margin-top-40">
                 JOB
               </h3>
             </div>
@@ -79,11 +81,13 @@ function CustomerDetails(props) {
           {items.jobs &&
             items.jobs.map(job => (
               <JobBox
+                key={job._id}
                 jobid={job._id}
                 startdate={job.startdate}
                 enddate={job.enddate}
                 numberofdays={job.numberofdays}
-                totalprice={job.numberofdays}
+                priceperday={items.priceperday}
+                totalprice={job.totalprice}
                 paid={job.paid}
                 archived={job.archived}
                 description={job.description}

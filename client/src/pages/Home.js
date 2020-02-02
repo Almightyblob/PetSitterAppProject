@@ -8,11 +8,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
 
-const Home = ({ auth: { isAuthenticated, loading } }) => {
+const Home = ({ auth: { isAuthenticated, loading } }, props) => {
   const Private = (
-    <Fragment>
-      <CalendarLayout>
-        <Calendar />
+    <Fragment history={props.history}>
+      <CalendarLayout history={props.history}>
+        <Calendar history={props.history} />
       </CalendarLayout>
     </Fragment>
   );
