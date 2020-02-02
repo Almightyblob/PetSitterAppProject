@@ -26,11 +26,7 @@ const Home = ({ auth: { isAuthenticated, loading } }, props) => {
 
   return (
     <div>
-      {!loading && (
-        <Fragment history={props.history}>
-          {isAuthenticated ? Private : Public}
-        </Fragment>
-      )}
+      {!loading && <Fragment>{isAuthenticated ? Private : Public}</Fragment>}
     </div>
   );
 };
