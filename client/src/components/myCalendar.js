@@ -52,8 +52,8 @@ function MyCalendar(props) {
           });
         } else {
           newArray.push({
-            start: new Date(),
-            end: new Date(),
+            start: new Date(moment(job.startdate)),
+            end: new Date(moment(job.enddate).add(1, "days")),
             title: `${job.customer.name}`,
             allDay: true,
             paid: job.paid,
