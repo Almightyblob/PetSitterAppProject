@@ -51,7 +51,7 @@ router.get("/fromcustomer/:id", async (req, res) => {
 //@access       PUBLIC
 
 router.post("/:id", async (req, res) => {
-  const {
+  var {
     startdate,
     enddate,
     numberofdays,
@@ -89,7 +89,7 @@ router.post("/:id", async (req, res) => {
 //@access       PUBLIC
 
 router.put("/:id", async (req, res) => {
-  const {
+  var {
     startdate,
     enddate,
     numberofdays,
