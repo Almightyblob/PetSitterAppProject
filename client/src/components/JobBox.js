@@ -62,8 +62,11 @@ const JobBox = ({
   }
   if (paid) {
     return (
-      <div className="column is-full">
-        <div key={state.jobid} className="columns box has-margin-bottom-20">
+      <div className="columns">
+        <div
+          key={state.jobid}
+          className="column box is-full has-margin-bottom-20"
+        >
           <div className="column is-2">
             <p className="has-text-weight-semibold">Start:</p>
             <p className="has-text-weight-semibold has-text-primary">
