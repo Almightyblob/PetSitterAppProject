@@ -5,6 +5,7 @@ import Calendar from "../components/myCalendar";
 import CustomerBox from "../components/CustomerBox";
 import PetBox from "../components/PetBox";
 import JobBox from "../components/JobBox";
+import ArchiveBox from "../components/ArchiveBox";
 // import { Link } from "react-router-dom";
 function CustomerDetails(props) {
   useEffect(() => {
@@ -104,9 +105,31 @@ function CustomerDetails(props) {
           </button>
         </div>
       </div>
-      <div className="columns"></div>
-      <div className="column is-8 is-offset-2 is-full-mobile is-paddingless has-padding-left-5-mobile has-padding-right-5-mobile mobileCalendarHeight has-margin-top-60">
-        <Calendar id={items._id} />
+      <div className="columns">
+        <div className="column is-8 is-offset-2 is-full-mobile is-paddingless has-padding-left-5-mobile has-padding-right-5-mobile mobileCalendarHeight has-margin-top-60">
+          <Calendar id={items._id} />
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column box is-8 is-offset-2 is-8-mobile is-offset-2-mobile has-margin-top-50 has-margin-bottom-50 has-padding-left-30 has-padding-right-30 has-padding-top-60">
+          {items.jobs &&
+            items.jobs.map(job => (
+              <ArchiveBox
+                id={items._id}
+                key={job._id}
+                jobid={job._id}
+                startdate={job.startdate}
+                enddate={job.enddate}
+                numberofdays={job.numberofdays}
+                priceperday={items.priceperday}
+                totalprice={job.totalprice}
+                paid={job.paid}
+                archived={job.archived}
+                description={job.description}
+                customerid={items._id}
+              />
+            ))}
+        </div>
       </div>
     </Fragment>
   ) : (
